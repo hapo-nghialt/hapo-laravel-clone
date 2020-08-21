@@ -25,9 +25,9 @@ class Review extends Model
 
     public function target()
     {
-        if ($this->type == 'course') {
+        if ($this->type == self::TYPE['course']) {
             return $this->belongsTo(Course::class, 'target_id');
-        } elseif ($this->type == 'lesson') {
+        } elseif ($this->type == self::TYPE['lesson']) {
             return $this->belongsTo(Lesson::class, 'target_id');
         }
     }
