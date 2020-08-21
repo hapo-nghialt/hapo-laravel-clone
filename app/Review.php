@@ -20,11 +20,11 @@ class Review extends Model
 
     public function course()
     {
-        return $this->belongsTo(Course::class, 'target_id')->where('type', 0);
+        return $this->belongsTo(Course::class, 'target_id')->wherePivot('type', 0);
     }
 
     public function lesson()
     {
-        return $this->belongsTo(Lesson::class, 'target_id')->where('type', 1);
+        return $this->belongsTo(Lesson::class, 'target_id')->wherePivot('type', 1);
     }
 }
