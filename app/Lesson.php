@@ -21,4 +21,9 @@ class Lesson extends Model
     {
         return $this->belongsToMany(User::class, 'course_user');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'target_id')->where('type', 1);
+    }
 }

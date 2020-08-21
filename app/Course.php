@@ -30,6 +30,6 @@ class Course extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'target_id');
+        return $this->hasMany(Review::class, 'target_id')->where('type', 0);
     }
 }
