@@ -23,11 +23,13 @@ class Course extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function users() {
+    public function users() 
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function reviews() {
+    public function reviews() 
+    {
         return $this->hasMany(Review::class, 'target_id');
     }
 }
