@@ -24,6 +24,6 @@ class Lesson extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'target_id')->where('type', 1);
+        return $this->hasMany(Review::class, 'target_id')->where('type', 'lesson');
     }
 }
