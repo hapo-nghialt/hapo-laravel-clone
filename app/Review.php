@@ -28,7 +28,6 @@ class Review extends Model
         if ('type' == 0) {
             return $this->belongsTo(Course::class, 'target_id');
         }
-        
         elseif ('type' == 1) {
             return $this->belongsTo(Lesson::class, 'target_id');
         }
