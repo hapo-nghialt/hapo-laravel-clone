@@ -1,0 +1,487 @@
+@media only screen and (max-width: 768px) {
+  .img-header {
+    width: 50%;
+    margin: 20px;
+  }
+
+  .banner {
+    height: 350px;
+  }
+
+  .content-banner {
+    margin-left: 2em;
+
+    .slogan-banner {
+      @include UTM(normal, 30px, 37px, #11114E, -0.05em);
+
+      span {
+        -webkit-text-stroke-width: 2px;
+        letter-spacing: 0;
+      }
+
+      img {
+        width: 35px;
+      }
+    }
+
+    .text-banner {
+      @include UTM(normal, 16px, 20px, #505353, -0.05em);
+    }
+
+    .btn-start {
+      @include UTM(bold, 16px, 20px, $main_font_color, -0.05em);
+      -webkit-text-stroke-width: 0px;
+      width: 65%;
+    }
+  }
+
+  .btn-courses {
+    -webkit-text-stroke-width: 0.2px;
+    @include UTM(bold, 10px, 12px, $main_font_color, -0.05em);
+  }
+
+  .main-courses-detail {
+    .img-courses {
+      height: 40%;
+    }
+
+    .img-main-courses {
+      max-width: 70%;
+    }
+  }
+
+  .text-courses,
+  .text-other-courses {
+    b {
+      -webkit-text-stroke-width: 0.5px;
+      @include UTM(bold, 20px, 25px, $main_color, -0.05em);
+
+      span {
+        display: none;
+      }
+    }
+  
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 4;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      @include UTM(bold, 14px, 18px, #505353, -0.05em);
+    }
+  }
+
+  .other-courses-detail {
+    .img-courses {
+      height: 40%;
+    }
+
+    .img-other-courses {
+      max-width: 70%;
+    }
+  }
+
+  .text-allcourses {
+    a {
+      @include UTM(bold, 28px, 34px, #90AB26, -0.02em);
+    }
+  }
+
+  .hapo-title {
+    @include UTM(bold, 50px, 61px, #11114E, -0.02em)
+  }
+
+  .whyhapo {
+    .img-whyhapo-left {
+      margin-top: -160px;
+    }
+
+    .whyhapo-content {
+      margin-top: -1em;
+    }
+  }
+
+  .whyhapo-left {
+    .menu-whyhapo {
+      li {
+        padding: 0.5em;
+
+        img {
+          width: 15px;
+          height: 15px;
+          margin-right: 0.5em;
+        }
+      }
+    }
+  }
+
+  .img-whyhapo-right {
+    margin-left: -50px;
+    
+    img {
+      height: 250px;
+    }
+  }
+
+  .button-prev {
+    left: 56px;
+  }
+  
+  .button-next {
+    right: 56px;
+  }
+
+  .feedback-detail {
+    margin: 0 4em;
+  }
+
+  .text-feedback {
+    @include UTM(lighter, 18px, 22px, #505353, -0.02em);
+  }
+
+  .hapo-member {
+    margin-top: 50px;
+    
+    .text-member {
+      padding-top: 50px;
+      -webkit-text-stroke-width: 1px;
+      @include UTM(bold, 35px, 43px, $main_font_color, -0.02em);
+    }
+    
+    .btn-member {
+      padding-bottom: 50px;;
+
+      a {
+        width: 35%;
+        @include UTM(bold, 20px, 25px, #90AB26, -0.05em);
+      }
+    }
+  }
+
+  .hapo-statistic {
+    padding: 0;
+  }
+
+  .statistic-content {
+    p {
+      @include UTM(bold, 40px, 49px, #505353, -0.05em)
+    }
+  
+    b {
+      @include UTM(bold, 40px, 49px, #B2D235, -0.05em)
+    }
+  }
+
+  .whyhapo-left {
+    .menu-whyhapo {
+      @include UTM(normal, 16px, 20px, $main_font_color, -0.05em);
+    }
+
+    li {
+      padding: 0.5em;
+    }
+  }
+
+  .img-footer {
+    width: 60%;
+  }
+
+  .text-footer {
+    p {
+      @include UTM(normal, 16px, 20px, $main_font_color, -0.05em);
+    }
+  }
+
+  .menu-footer {
+    a {
+      @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+      text-decoration: none;
+
+      &:hover {
+        color: $main_font_color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .contact-footer {
+    a {
+      width: 40px;
+      height: 40px;
+      margin: 10px 15px;
+      font-size: 20px;
+    }
+  }
+
+  .toggle-chat {
+    bottom: 30px;
+    right: 20px;
+
+    .chat-content {
+      bottom: 110px;
+      right: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 426px) {
+  .img-header {
+    width: 40%;
+  }
+
+  .menu-header {
+    a {
+      text-align: center;
+      
+      &:hover {
+        color: $main_color;
+        background-color: #FFFFFF;
+      }
+    }
+  }
+
+  .banner {
+    height: 200px;
+    background-position: right;
+    justify-content: center;
+  }
+
+  .content-banner {
+    transform: translateY(100%);
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+
+    .slogan-banner {
+      margin-top: 1em;
+      @include UTM(normal, 25px, 31px, #11114E, -0.05em);
+
+      img {
+        width: 30px;
+      }
+    }
+
+    .btn-start {
+      width: 95%;
+      padding-top: 0.7em;
+      padding-bottom: 0.7em;
+    }
+  }
+
+  .blank-banner {
+    height: 310px;
+  }
+
+  .btn-courses {
+    @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+    width: 80%;
+  }
+
+  .main-courses {
+    margin-top: 2em;
+    .main-courses-content {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .main-courses-detail {
+    .img-main-courses {
+      height: 95px;
+      margin: 2em;
+    }
+  }
+
+  .text-courses {
+    b {
+      margin: 0.5em;
+      span {
+        display: inline;
+      }
+    }
+
+    p {
+      padding: 0.5em;
+    }
+
+    a {
+      margin-bottom: 1em;
+    }
+  }
+
+  .other-courses {
+    .other-courses-content {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .other-courses-detail {
+    margin-bottom: 8em;
+
+    .img-courses {
+      height: 55%;
+    }
+
+    .right-element {
+      height: 45%;
+    }
+  }
+
+  .text-other-courses {
+    padding: 1em;
+    
+    b {
+      margin-bottom: 0.5em;
+    }
+  }
+  
+  .hapo-title {
+    @include UTM(bold, 40px, 49px, #11114E, -0.02em)
+  }
+
+  .whyhapo {
+    .whyhapo-title {
+      margin: 1em 0 1em -1em;
+      @include UTM(bold, 40px, 40px, $main_font_color, -0.02em);
+    }
+
+    .img-whyhapo-left {
+      margin-top: -110px;
+    }
+  }
+
+  .whyhapo-left {
+    .menu-whyhapo {
+      @include UTM(normal, 14px, 17px, $main_font_color, -0.05em);
+    }
+
+    li {
+      padding: 0.2em;
+    }
+  }
+
+  .img-whyhapo-right {
+    margin-left: 0;
+  }
+
+  .button-prev {
+    left: 0;
+  }
+  
+  .button-next {
+    right: 0;
+  }
+
+  .feedback-detail {
+    margin: 0 1.5em;
+
+    .user {
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+
+  .feedback-content {
+    margin:0.2em -0.5em;
+    
+    &:after {
+      top: 66.8%;
+    }
+  
+    &:before {
+      top: 67.1%;
+    }
+  }
+
+  .user-information {
+    b {
+      @include UTM(bold, 16px, 20px, #11114E, 0);
+    }
+  
+    p {
+      @include UTM(normal, 14px, 17px, #505353, 0);
+    }
+  }
+
+  .hapo-member {
+    margin-top: 50px;
+    
+    .text-member {
+      padding-top: 30px;
+      -webkit-text-stroke-width: 0.5px;
+      @include UTM(bold, 23px, 28px, $main_font_color, -0.02em);
+    }
+    
+    .btn-member {
+      padding-bottom: 30px;;
+
+      a {
+        width: 50%;
+        -webkit-text-stroke-width: 0;
+        @include UTM(bold, 18px, 22px, #90AB26, -0.05em);
+      }
+    }
+  }
+
+  .statistic-content {
+    p {
+      @include UTM(bold, 40px, 49px, #505353, -0.05em)
+    }
+  
+    b {
+      @include UTM(bold, 40px, 49px, #B2D235, -0.05em)
+    }
+  }
+
+  .footer {
+    padding-top: 1em;
+  }
+
+  .text-footer {
+    order: 3;
+    margin-top: 30px;
+
+    img {
+      width: 150px;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      @include UTM(normal, 14px, 17px, $main_font_color, -0.05em);
+    }
+  }
+
+  .contact {
+    order: 4;
+  }
+
+  .menu-footer {
+    margin-left: 40px;
+
+    a{
+      @include UTM(bold, 16px, 21px, $main_font_color, -0.05em);
+    }
+  }
+
+  .contact-footer {
+    a {
+      width: 30px;
+      height: 30px;
+      margin: 10px 5px;
+      font-size: 16px;
+    }
+  }
+
+  .toggle-chat {
+    bottom: 30px;
+    right: 20px;
+
+    .chat-content {
+      bottom: 110px;
+      right: 20px;
+    }
+  }
+}
