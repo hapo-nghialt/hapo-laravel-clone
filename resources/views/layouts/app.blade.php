@@ -7,7 +7,6 @@
     <link href="images/logoOwl.png" rel="shortcut icon">
     <title>@yield('title')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     @include('layouts.header')
@@ -17,6 +16,5 @@
     @include('layouts.footer')
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
