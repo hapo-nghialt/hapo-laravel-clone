@@ -1,0 +1,506 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  font-family: "UTM";
+}
+
+.img-header {
+  width: 60%;
+}
+
+.menu-header {
+  li {
+    margin: 10px;
+  }
+  
+  a {
+    text-transform: uppercase;
+    color: #505353;
+    @include OpenSans(bold, 14px, 19px);
+    border-radius: 17px;
+
+    &:hover {
+      background-color: $main_color;
+      color: $main_font_color;
+    }
+  }
+}
+
+.banner {
+  background: url('../images/HapoLearnBanner.png') no-repeat;
+  background-size: cover;
+  height: 655px;
+}
+
+.btn-start {
+  border-radius: 35px;
+  -webkit-text-stroke-width: 1px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  @include UTM(bold, 30px, 37px, $main_font_color, -0.05em);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.content-banner {
+  margin-left: 5em;
+
+  .slogan-banner {
+    @include UTM(bold, 50px, 61px, #11114E, -0.05em);
+    
+    span {
+      -webkit-text-stroke-width: 2px;
+    }
+  }
+
+  .text-banner {
+    @include UTM(normal, 20px, 25px, #505353, -0.05em);
+  }
+
+  a {
+    background: $main_color;
+    width: 75%;
+    @extend .btn-start;
+  }
+}
+
+.blank-banner {
+  background-image: linear-gradient(white, #E5E5E5);
+  height: 170px;
+  margin-bottom: -6rem;
+}
+
+.btn-courses {
+  background-color: $main_color;
+  border-radius: 22px;
+  box-shadow: inset 0px 1.5px 2px #6F8710;
+  width: 60%;
+  @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+  -webkit-text-stroke-width: 0.5px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.main-courses-detail {
+  .img-courses {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 15px 15px 0 0;
+    height: 50%;
+  }
+
+  .img-main-courses {
+    max-height: 125px;
+  }
+
+  .left-element {
+    background-color: #3F6185;
+  }
+  
+  .mid-element {
+    background-color: #DC594C;
+  }
+  
+  .right-element {
+    background-color: #556598;
+  }
+}
+
+.text-courses,
+.text-other-courses {
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+
+  b {
+    -webkit-text-stroke-width: 1px;
+    @include UTM(bold, 30px, 37px, $main_color, -0.05em);
+  }
+
+  p {
+    text-align: center;
+    @include UTM(bold, 14px, 20px, #505353, -0.05em);
+  }
+
+  a {
+    @extend .btn-courses;
+  }
+}
+
+.other-courses-detail {
+  .img-courses {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 15px 15px 0 0;
+    height: 45%;
+  }
+
+  .img-other-courses {
+    max-height: 152px;
+  }
+
+  .left-element {
+    background-color: #24ABE2;
+  }
+  
+  .mid-element {
+    background-color: #E14E40;
+  }
+  
+  .right-element {
+    background-color: #1B75BB;
+  }
+}
+
+.text-other-courses {
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.hapo-title {
+  -webkit-text-stroke-width: 2px;
+  @include UTM(bold, 80px, 98px, #11114E, -0.02em);
+
+  .underline {
+    border-bottom: 6px solid $main_color;
+    border-radius: 3px;
+    padding-bottom: 10px;
+  }
+}
+
+.text-allcourses {
+  width: 100%;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    -webkit-text-stroke-width: 2px;
+    @include UTM(bold, 40px, 49px, #90AB26, 0.02em);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    transition: all ease-in-out 0.5s;
+
+    a {
+      text-decoration: none;
+      color: #90AB26;
+    }
+  }
+}
+
+.whyhapo {
+  background: url(../images/coverWhyHapoLearn.jpg) no-repeat;
+  background-size: cover;
+
+  .whyhapo-content {
+    margin-top: -10em;
+  }
+
+  .img-whyhapo-left {
+    margin-top: -220px;
+  }
+
+  .whyhapo-title {
+    -webkit-text-stroke-width: 1px;
+    @include UTM(bold, 50px, 61px, $main_font_color, -0.02em);
+  }
+}
+
+.whyhapo-left {
+  .whyhapo-title {
+    -webkit-text-stroke-width: 2px;
+    @include UTM(bold, 70px, 86px, $main_font_color, -0.02em);
+  }
+
+  .menu-whyhapo {
+    list-style: none;
+    @include UTM(normal, 20px, 25px, $main_font_color, -0.05em);
+  
+    img {
+      margin-bottom: 5px;
+    }
+
+    li {
+      padding: 0.7em;
+    }
+  }
+}
+
+.img-whyhapo-right {
+  img {
+    height: 544px;
+  }
+}
+
+.text-feedback {
+  text-align: center;
+  @include UTM(lighter, 25px, 31px, #505353, -0.02em);
+}
+
+.feedback-detail {
+  .user {
+    img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .fa-star,
+    .fa-star-half-alt {
+      color: #F2C54F;
+    }
+  }
+}
+
+.btn-header:focus,
+.button-next:focus,
+.button-prev:focus,
+.feedback-detail:focus {
+  outline: none;
+}
+
+.button-next,
+.button-prev {
+  position: absolute;
+  top: 33%;
+  display: block;
+  width: 30px;
+  height: 30px;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  background: #FFFFFF;
+  color: #969494;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 50%;
+  outline: none;
+}
+
+.button-prev {
+  z-index: 9;
+}
+
+.button-next {
+  right: 0;
+}
+
+.feedback-content {
+  margin: 1em;
+
+  .comment-content {
+    padding: 1.5em 1em;
+    width: 100%;
+    border: 0.5px solid #E2E2E2;
+    box-shadow: 1px 1px 5px 0.5px #969694;
+    border-radius: 10px;
+
+    p {
+      border-left: 5px solid #D9DADC;
+      @include UTM(normal, 16px, 20px, #000000, -0.05em)
+    }
+  }
+
+  &:after,
+  &:before {
+    content: '';
+    border: solid transparent;
+    position: absolute;
+  }
+
+  &:after {
+    border-top-color: #FFFFFF;
+    border-width: 10px;
+    top: 63.4%;
+    margin-left: 22px;
+  }
+
+  &:before {
+    border-top-color: #E2E2E2;
+    border-width: 12px;
+    top: 63.7%;
+    margin-left: 20px;
+  }
+}
+
+.user-information {
+  b {
+    -webkit-text-stroke-width: 1px;
+    @include UTM(bold, 20px, 25px, #11114E, 0);
+  }
+
+  p {
+    @include UTM(normal, 16px, 20px, #505353, 0);
+  }
+}
+
+.hapo-member {
+  background: url(../images/background-green.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top: 100px;
+
+  .text-member {
+    padding-top: 200px;
+    -webkit-text-stroke-width: 2px;
+    text-align: center;
+    @include UTM(bold, 60px, 74px, $main_font_color, -0.02em);
+  }
+  
+  .btn-member {
+    padding-bottom: 200px;;
+
+    a {
+      @extend .btn-start;
+      width: 377px;
+      color: $main_color;
+      background-color: $main_font_color;
+      border: none;
+    }
+  }
+}
+
+.hapo-statistic {
+  padding: 0 8em;
+}
+
+.statistic-content {
+  text-align: center;
+  
+  p {
+    @include UTM(bold, 60px, 74px, #505353, -0.05em)
+  }
+
+  b {
+    @include UTM(bold, 60px, 74px, #B2D235, -0.05em)
+  }
+}
+
+.footer {
+  padding: 40px;
+  background-color: #505353;
+}
+
+.img-footer {
+  width: 50%;
+
+  img {
+    width: 100%;
+  } 
+}
+
+.text-footer {
+  p {
+    @include UTM(normal, 20px, 25px, $main_font_color, -0.05em);
+  }
+}
+
+.menu-footer {
+  a {
+    text-decoration: none;
+    @include UTM(bold, 23px, 25px, $main_font_color, -0.05em);
+    
+    &:hover {
+      color: $main_font_color;
+      text-decoration: underline;
+    }
+  }
+}
+
+.contact-footer {
+  a {
+    width: 50px;
+    height: 50px;
+    background-color: $main_font_color;
+    border-radius: 50%;
+    margin: 10px 20px;
+    color: #505353;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+.toggle-chat {
+  bottom: 50px;
+  right: 40px;
+  
+  .chat-content {
+    display: none;
+    bottom: 130px;
+    right: 40px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    border-radius: 23px;
+    background-color: #FFFFFF;
+    color: #7F7F7F;
+    @include OpenSans(normal, 12px, 16px);
+  }
+
+  .btn-chat {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all ease-in-out 0.5s;
+    }
+  }
+
+  .btn-cancel {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #C4C4C4;
+    color: #000000;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  }
+}
+
+.hapo-chatbot {
+  p {
+    color: #505353;
+    letter-spacing: -0.02em;
+    background-color: #F1F0F0;
+    border-radius: 15px;
+    @include OpenSans(normal, 12px, 17px);
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+} 
+
+.login {
+  text-align: center;
+
+  a {
+    background-color: #3184F7;
+    color: $main_font_color;
+    width: 80%;
+    border-radius: 10px;
+
+    &:hover {
+      color: $main_font_color;
+      opacity: 0.8;
+    }
+
+    img {
+      width: 17px;
+    }
+    @include OpenSans(normal, 12px, 16px);
+  }
+} 
+
+.copyright {
+  background-color: #454545;
+  text-align: center;
+  p {
+    @include UTM(normal, 15px, 18px, $main_font_color, -0.05em);
+    padding: 10px;
+  }
+}
