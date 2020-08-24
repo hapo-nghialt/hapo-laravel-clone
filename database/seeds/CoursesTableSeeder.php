@@ -12,7 +12,8 @@ class CoursesTableSeeder extends Seeder
      */
     public function run()
     {
-        $description = 'I knew hardly anything about HTML, JS, and CSS before entering New Media. I had coded quite a bit, but never touched anything in regards to web development.';
+        $description = 'I knew hardly anything about HTML, JS, and CSS before entering New Media. 
+        I had coded quite a bit, but never touched anything in regards to web development.';
 
         $name = [
             'HTML/CSS/js Tutorial',
@@ -23,7 +24,7 @@ class CoursesTableSeeder extends Seeder
             'Java Tutorial',
         ];
 
-        for ($i=0; $i < sizeof($name); $i++) { 
+        for ($i = 0; $i < sizeof($name); $i++) {
             Course::create([
                 'name' => $name[$i],
                 'description' => $description,
