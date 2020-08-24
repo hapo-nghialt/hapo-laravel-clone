@@ -15,6 +15,5 @@
     </main>
     @include('layouts.footer')
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/slick.min.js') }}"></script>
 </body>
 </html>
