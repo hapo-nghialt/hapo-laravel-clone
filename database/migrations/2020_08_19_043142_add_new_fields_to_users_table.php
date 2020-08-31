@@ -18,7 +18,7 @@ class AddNewFieldsToUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
-            $table->tinyInteger('role')->defaut(0);
+            $table->tinyInteger('role')->nullable();
             $table->softDeletes();
         });
     }

@@ -1,3 +1,5 @@
+@import '_variables';
+
 body {
   margin: 0 auto;
   padding: 0;
@@ -21,6 +23,85 @@ body {
 
     &:hover {
       background-color: $main_color;
+      color: $main_font_color;
+    }
+  }
+}
+
+.modal-content-login {
+  border: $main_color 1px solid;
+  background-color: $main_color;
+
+  a {
+    @include UTM(bold, 25px, 31px, $main_font_color, -0.02em);
+  }
+}
+
+.modal-content-register {
+  border: $main_color 1px solid;
+  background-color: $main_font_color;
+
+  a {
+    @include UTM(bold, 25px, 31px, $main_color, -0.02em);
+  }
+}
+
+.btn-login {
+  background-color: $main_color;
+  border-radius: 22px;
+  box-shadow: inset 0px 1.5px 2px #6F8710;
+  @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+}
+
+.btn-close-login {
+  background-color: $main_color;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  -webkit-text-stroke-width: 2px;
+  top: -8px;
+  right: -16px;
+
+  span {
+    color: #FFFFFF;
+    font-size: 30px;
+  }
+}
+
+.md-form {
+  @include UTM(bold, 20px, 25px, #505353, -0.02em);
+}
+
+.form-input {
+  font-size: 25px;
+}
+
+.forgot-password {
+  text-decoration-line: underline;
+  @include UTM(bold, 18px, 22px, $main_color, -0.02em);
+}
+
+.modal-footer {
+  span {
+    top: -20px;
+    @include UTM(bold, 20px, 25px, #505353, -0.02em);
+    background-color: $main_font_color;
+  }
+
+  .login-google {
+    background-color: #DC4E41;
+  }
+  
+  .login-facebook {
+    background-color: #3B5999;
+  }
+
+  .login-google,
+  .login-facebook {
+    color: #FFFFFF;
+    @include UTM(normal, 20px, 25px, $main_font_color, -0.02em);
+
+    &:hover {
       color: $main_font_color;
     }
   }
