@@ -7,11 +7,6 @@ use App\Models\Course;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $maincourses = Course::orderBy('id', 'asc')->take(3)->get();
