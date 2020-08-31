@@ -16,5 +16,4 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('node_modules/font-awesome/fonts/', 'public/fonts')
     .options({
         processCssUrls: false
-    })
-    .version();
+    });

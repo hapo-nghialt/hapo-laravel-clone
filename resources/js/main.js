@@ -1,16 +1,15 @@
 $(document).ready(function() {
-    $('.login').click(function() {
-        $('.modal-content-login').css({'background-color': '#B2D235'});
-        $('.login').css({'color': '#FFFFFF'});
-        $('.modal-content-register').css({'background-color': '#FFFFFF'});
-        $('.register').css({'color': '#B2D235'});
+    var login = document.getElementById("modal-login");
+    var register = document.getElementById("modal-register");
+
+    $('.login').click(function () {
+        login.classList.add("focus-on");
+        register.classList.remove("focus-on");
     });
 
-    $('.register').click(function() {
-        $('.modal-content-login').css({'background-color': '#FFFFFF'});
-        $('.login').css({'color': '#B2D235'});
-        $('.modal-content-register').css({'background-color': '#B2D235'});
-        $('.register').css({'color': '#FFFFFF'});
+    $('.register').click(function () {
+        login.classList.remove("focus-on");
+        register.classList.add("focus-on");
     });
 
     $('.logout').click(function() {

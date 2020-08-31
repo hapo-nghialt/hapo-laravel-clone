@@ -2,10 +2,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <ul class="nav">
-                <li class="modal-content-login nav-item col-6">
+                <li class="modal-content-login focus-on nav-item col-6" id="modal-login">
                     <a class="login nav-link active text-center" data-toggle="tab" href="#login" role="tab">LOGIN</a>
                 </li>
-                <li class="modal-content-register nav-item col-6">
+                <li class="modal-content-register nav-item col-6" id="modal-register">
                     <a class="register nav-link text-center" data-toggle="tab" href="#register" role="tab">REGISTER</a>
                 </li>
             </ul>
@@ -19,8 +19,8 @@
                         <div class="modal-body mb-1 tab-pane">
                             <div class="md-form mb-4">
                                 <label class="form-label" for="email-login">Username:</label>
-                                <input id="email-login" type="email" class="form-control form-input @error('email_login') is-invalid @enderror" name="email_login" value="{{ old('email_login') }}" required autocomplete="email" autofocus>
-                                @error('email_login')
+                                <input id="email-login" type="email" class="form-control form-input @error('login_email') is-invalid @enderror" name="login_email" value="{{ old('login_email') }}" required autocomplete="email" autofocus>
+                                @error('login_email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -28,8 +28,8 @@
                             </div>
                             <div class="md-form mb-1">
                                 <label class="form-label" for="password-login">Password:</label>
-                                <input id="password-login" type="password" class="form-control form-input @error('password_login') is-invalid @enderror" name="password_login" required autocomplete="current-password">
-                                @error('password_login')
+                                <input id="password-login" type="password" class="form-control form-input @error('login_password') is-invalid @enderror" name="login_password" required autocomplete="current-password">
+                                @error('login_password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
