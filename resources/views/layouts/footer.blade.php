@@ -1,4 +1,4 @@
-<div class="footer container-fluid d-flex justify-content-center flex-wrap no-gutters p-md-4 mt-xl-5 mt-0">
+<div class="footer container-fluid d-flex justify-content-center flex-wrap no-gutters p-md-4 mt-0">
     <div class="text-footer col-xl-5 col-md-4 d-flex justify-content-xl-center flex-column align-items-xl-center col-6">
         <div class="img-footer">
             <img class="d-flex mx-xl-auto m-md-0" src="images/HapoLearnLogoFooter.png" alt="">

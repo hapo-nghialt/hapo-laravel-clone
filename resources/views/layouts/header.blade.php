@@ -7,10 +7,10 @@
         <div class="col-xl-8 col-12 col-md-12 justify-content-xl-end collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="menu-header navbar-nav mr-xl-4">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">home</a>
+                    <a class="nav-link" href="{{ route('home') }}">home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">all&nbsp;courses</a>
+                    <a class="nav-link" href="{{ route('course') }}">all&nbsp;courses</a>
                 </li>
                 @if (Auth::check())
                 @csrf
