@@ -16,8 +16,8 @@ class CourseController extends Controller
     public function searchCourse(Request $request)
     {
         $keyword = $request->course_search;
-        $courses = Course::where('name', 'like', '%'. $keyword .'%')
-                        ->orWhere('description', 'like', '%'. $keyword .'%')
+        $courses = Course::where('name', 'like', '%' . $keyword . '%')
+                        ->orWhere('description', 'like', '%' . $keyword . '%')
                         ->paginate(config('variable.pagination'));
         return view('user.all-courses', compact('courses', 'keyword'));
     }
