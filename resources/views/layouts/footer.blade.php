@@ -38,13 +38,13 @@
     <div class="contact col-xl-4 col-md-4 d-flex justify-content-center align-items-center col-4">
         <ul class="contact-footer navbar-nav flex-row">
             <li class="nav-item" data-toggle="tooltip" data-placement="top" title="facebook.com/tuyen.dung.haposoft">
-                <a class="nav-link d-flex align-items-center justify-content-center fa fa-facebook test" href="#"></a>
+                <a class="nav-link d-flex align-items-center justify-content-center test" href="#"><i class="fab fa-facebook-f"></i></a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="top" title="+84-85-645-9898">
-                <a class="nav-link d-flex align-items-center justify-content-center fa fa-phone test" href="#"></a>
+                <a class="nav-link d-flex align-items-center justify-content-center test" href="#"><i class="fas fa-phone-alt"></i></a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="top" title="info@haposoft.com">
-                <a class="nav-link d-flex align-items-center justify-content-center fa fa-envelope test" href="#"></a>
+                <a class="nav-link d-flex align-items-center justify-content-center test" href="#"><i class="fas fa-envelope"></i></a>
             </li>
         </ul>
     </div>

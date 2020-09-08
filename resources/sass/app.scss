@@ -7,11 +7,13 @@
 //Jquery
 @import '~jquery-ui/themes/base/all.css';
 
-// Font Awesome
-@import "node_modules/font-awesome/scss/font-awesome.scss";
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
 @import '~slick-carousel/slick/slick.css';
 @import '~slick-carousel/slick/slick-theme.css';
 @import 'style';

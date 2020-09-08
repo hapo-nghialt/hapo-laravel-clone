@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Lesson;
-use Review;
-use Tag;
+use App\Models\Lesson;
+use App\Models\Review;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name', 'image', 'description', 'time', 'price', 'quizze', 'teacher_id',
     ];
@@ -16,6 +19,11 @@ class Course extends Model
     public function lessons()
     {
         return $this->hasMany(Lesson::class, 'course_id');
+    }
+
+    public function getNumberLessonAttribute()
+    {
+        return $this->lessons()->count();
     }
 
     public function tags()

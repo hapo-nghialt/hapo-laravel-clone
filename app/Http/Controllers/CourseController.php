@@ -21,4 +21,23 @@ class CourseController extends Controller
                         ->paginate(config('variable.pagination'));
         return view('user.all-courses', compact('courses', 'keyword'));
     }
+
+    public function showCourseDetail($id)
+    {
+        $courseDetail = Course::find($id);
+        $lessons = $courseDetail->lessons()
+            ->paginate(config('variable.pagination-lesson'));
+        
+        return view('user.course-detail', compact('courseDetail', 'lessons'));
+    }
+
+    public function searchCourseDetail(Request $request, $id)
+    {
+        $keyword = $request->search;
+        $courseDetail = Course::find($id);
+        $lessons = $courseDetail->lessons()
+            ->where('name', 'like', '%' . $keyword . '%')
+            ->paginate(config('variable.pagination-lesson'));
+        return view('user.course-detail', compact('courseDetail', 'lessons', 'keyword'));
+    }
 }
