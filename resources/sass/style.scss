@@ -19,7 +19,7 @@ main {
   
   a {
     text-transform: uppercase;
-    color: #505353;
+    color: $gray;
     @include OpenSans(bold, 14px, 19px);
     border-radius: 17px;
 
@@ -71,7 +71,7 @@ main {
 }
 
 .md-form {
-  @include UTM(bold, 20px, 25px, #505353, -0.02em);
+  @include UTM(bold, 20px, 25px, $gray, -0.02em);
 }
 
 .form-input {
@@ -86,7 +86,7 @@ main {
 .modal-footer {
   span {
     top: -20px;
-    @include UTM(bold, 20px, 25px, #505353, -0.02em);
+    @include UTM(bold, 20px, 25px, $gray, -0.02em);
     background-color: $main_font_color;
   }
 
@@ -121,7 +121,7 @@ main {
   }
 
   .courses-title {
-    @include UTM(bold, 25px, 31px, #505353, -0.05em);
+    @include UTM(bold, 25px, 31px, $gray, -0.05em);
   }
 
   .courses-desc {
@@ -141,7 +141,7 @@ main {
   }
 
   p {
-    @include UTM(bold, 25px, 31px, #505353, -0.05em);
+    @include UTM(bold, 25px, 31px, $gray, -0.05em);
   }
 
   b {
@@ -154,11 +154,291 @@ main {
   background: $main_font_color;
   border: 1px solid #C4C4C4;
   border-radius: 5px;
+  color: $gray;
   @include OpenSans(bold, 16px, 22px);
 }
 
-.btn-search {
+.icon-search {
   right: 25px;
+}
+
+.btn-search {
+  background-color: $main_color;
+  border-radius: 5px;
+  color: $main_font_color;
+
+  @include OpenSans(bold, 15px, 20px);
+}
+
+.header-course-detail {
+  background-color: #E9E7E7;
+
+  a {
+    @include UTM(normal, 16px, 20px, $gray, -0.02em);
+  }
+}
+
+.image-course-detail {
+  background-color: #3F6185;
+  border-radius: 10px;
+}
+
+.description-course-detail {
+  background-color: $main_font_color;
+  border: 1px solid #D1D1D1;
+  box-sizing: border-box;
+
+  .description-title {
+    -webkit-text-stroke-width: 1px;
+    @include UTM(bold, 25px, 31px, $gray, -0.02em);
+  }
+
+  .underline-description {
+    background-color: $main_color;
+  }
+
+  .description-content {
+    text-align: justify;
+    @include UTM(bold, 18px, 26px, #949292, -0.02em);
+  }
+}
+
+.content-course-detail {
+  background-color: $main_font_color;
+  border-radius: 10px;
+
+  nav {
+    border-bottom: 2px solid #DADADA;
+
+    a {
+      @include UTM(bold, 20px, 25px, $gray, -0.02em);
+    }
+    
+    .active {
+      border-bottom: 2px solid $main_color;
+      color: $main_color;
+    }
+  }
+}
+
+.btn-join-courses {
+  background: $main_color;
+  box-shadow: inset 0px 1.5px 2px #6F8710;
+  border-radius: 22px;
+  @include UTM(bold, 18px, 22px, $main_font_color, -0.05em)
+}
+
+.lesson-list {
+  @include UTM(bold, 18px, 22px, $gray, -0.02em);
+}
+
+.btn-learn {
+  background-color: $main_color;
+  box-shadow: inset 0px 1.5px 2px #6F8710;
+  border-radius: 22px;
+  @include UTM(bold, 15px, 18px, $main_font_color, -0.05em);
+  
+  &:hover {
+    opacity: 0.8;
+    color: #000000;
+  }
+}
+
+.statistic-course {
+  background-color: $main_font_color;
+  border: 1px solid #D1D1D1;
+  box-sizing: border-box;
+
+  .element {
+    @include UTM(normal, 25px, 31px, $gray, -0.02em);
+  }
+}
+
+.other-courses-element {
+  background-color: $main_font_color;
+  border: 1px solid #D1D1D1;
+  box-sizing: border-box;
+
+  .title {
+    background-color: $main_color;
+    text-align: center;
+    @include UTM(bold, 25px, 31px, $main_font_color, -0.05em);
+  }
+
+  .other-courses-item {
+    @include UTM(bold, 16px, 20px, $gray, -0.02em);
+  }
+
+  .btn-other-courses {
+    background-color: $main_color;
+    box-shadow: inset 0px 1.5px 2px #6F8710;
+    border-radius: 22px;
+    @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+
+    &:hover {
+      opacity: 0.8;
+      color: #000000;
+    }
+  }
+}
+
+.title-teacher {
+  -webkit-text-stroke-width: 1px;
+  @include UTM(bold, 25px, 31px, $gray, -0.02em);
+}
+
+.teacher-name {
+  @include UTM(bold, 18px, 22px, $gray, -0.02em);
+}
+
+.teacher-exp {
+  @include UTM(normal, 14px, 17px, #BDB9B9, -0.02em);
+}
+
+.logo-facebook,
+.logo-google,
+.logo-slack {
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.logo-google {
+  border: 0.5px solid #F44336;
+  color: #F44336;
+  padding: 4px 3px;
+}
+
+.logo-facebook {
+  border: 0.5px solid #1976D2;
+  color: #1976D2;
+  padding: 4px 7px;
+}
+
+.logo-slack {
+  border: 0.5px solid #E91E63;
+  color: #FF9800;
+  padding: 4px 6px;
+}
+
+.teacher-desc {
+  @include UTM(normal, 18px, 26px, #949292, -0.02em);
+}
+
+.rating-star {
+  background-color: $gray;
+  border-radius: 5px;
+
+  .rating-star-number {
+    @include UTM(bold, 60px, 74px, $main_font_color, -0.02em);
+  }
+
+  .fa-star {
+    color: #FFD567;
+    font-size: 25px;
+  }
+
+  .rating-times {
+    @include UTM(bold, 16px, 20px, $main_font_color, -0.02em);
+  }
+}
+
+.rating-total {
+  border: 1px solid #DFDFDF;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  .rating-total-number {
+    @include UTM(bold, 16px, 20px, $gray, -0.02em);
+  }
+
+  .review-bar {
+    height: 6px;
+  }
+
+  .total-stars {
+    @include UTM(bold, 14px, 17px, #9BA2A2, -0.02em);
+  }
+}
+
+.hapo-review-text {
+  -webkit-text-stroke-width: 1px;
+  @include UTM(bold, 18px, 22px, $gray, -0.02em);
+}
+
+.hapo-review {
+  .hapo-review-user {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .review-username {
+      -webkit-text-stroke-width: 1px;
+      @include UTM(bold, 18px, 22px, $gray, -0.02em);
+    }
+  
+    .fa-star {
+      color: #FFD567;
+      font-size: 15px;
+    }
+  
+    .review-time {
+      @include UTM(bold, 14px, 17px, #BDB9B9, -0.02em);
+    }
+  }
+
+  .review-text {
+    @include UTM(normal, 18px, 26px, #949292, -0.02em);
+  }
+}
+
+.add-review {
+  -webkit-text-stroke-width: 1px;
+  @include UTM(bold, 22px, 27px, $gray, -0.02em);
+}
+
+.message-add-review {
+  @include UTM(normal, 18px, 22px, #747474, -0.02em);
+}
+
+.rating {
+  float: left;
+}
+
+.rating:not(:checked) > input {
+  position: absolute;
+  display: none;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 18px;
+  color: #D8D8D8;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★ ';
+}
+
+.rating > input:checked ~ label {
+  color: #FFD567;    
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #DEB217;  
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #C59B08;
 }
 
 .banner {
@@ -190,7 +470,7 @@ main {
   }
 
   .text-banner {
-    @include UTM(normal, 20px, 25px, #505353, -0.05em);
+    @include UTM(normal, 20px, 25px, $gray, -0.05em);
   }
 
   a {
@@ -255,7 +535,7 @@ main {
 
   p {
     text-align: center;
-    @include UTM(bold, 14px, 20px, #505353, -0.05em);
+    @include UTM(bold, 14px, 20px, $gray, -0.05em);
   }
 
   a {
@@ -375,7 +655,7 @@ main {
 
 .text-feedback {
   text-align: center;
-  @include UTM(lighter, 25px, 31px, #505353, -0.02em);
+  @include UTM(lighter, 25px, 31px, $gray, -0.02em);
 }
 
 .feedback-detail {
@@ -468,7 +748,7 @@ main {
   }
 
   p {
-    @include UTM(normal, 16px, 20px, #505353, 0);
+    @include UTM(normal, 16px, 20px, $gray, 0);
   }
 }
 
@@ -506,7 +786,7 @@ main {
   text-align: center;
   
   p {
-    @include UTM(bold, 60px, 74px, #505353, -0.05em)
+    @include UTM(bold, 60px, 74px, $gray, -0.05em)
   }
 
   b {
@@ -516,7 +796,7 @@ main {
 
 .footer {
   padding: 40px;
-  background-color: #505353;
+  background-color: $gray;
 }
 
 .img-footer {
@@ -552,7 +832,7 @@ main {
     background-color: $main_font_color;
     border-radius: 50%;
     margin: 10px 20px;
-    color: #505353;
+    color: $gray;
     font-weight: bold;
     font-size: 25px;
   }
@@ -597,7 +877,7 @@ main {
 
 .hapo-chatbot {
   p {
-    color: #505353;
+    color: $gray;
     letter-spacing: -0.02em;
     background-color: #F1F0F0;
     border-radius: 15px;

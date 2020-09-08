@@ -1,4 +1,5 @@
 <?php
 return [
-    'pagination' => '14',
+    'pagination' => '4',
+    'pagination-lesson' => '20',
 ];

@@ -5,7 +5,6 @@
     <div class="courses-search d-flex flex-row">
         <a href="" class="btn btn-filter mt-4 ml-1"><i class="fa fa-sliders"></i>&nbsp;Filter</a>
         <form action="{{ route('course.search') }}" method="get" class="w-25 d-flex flex-row">
-            @csrf
             <input type="text" name="course_search" placeholder="Search..." class="form-control mt-4 ml-3" @if (isset($keyword)) value="{{ $keyword }}" @endif>
             <button type="submit" class="btn btn-search position-relative p-0 mt-4">
                 <i class="fa fa-search"></i>
@@ -28,7 +27,7 @@
                             {{ $item->description }}
                         </div>
                         <div class="d-flex justify-content-end mr-4 mt-3">
-                            <a href="" class="btn btn-more w-25">More</a>
+                            <a href="{{ route('course.detail', $item->id) }}" class="btn btn-more w-25">More</a>
                         </div>
                     </div>
                 </div>
@@ -40,13 +39,13 @@
                         <p class="m-0">Lessons</p><b>2,689</b>
                     </div>
                     <div class="col-xl-4 py-3">
-                        <p class="m-0">Quizzes</p><b>{{ $item->quizze }}</b>
+                        <p class="m-0">Quizzes</p><b>16,882</b>
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-    {{ $courses->links() }}
+    {{ $courses->appends($_GET)->links() }}
 </div>
 @endsection
