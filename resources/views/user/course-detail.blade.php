@@ -15,16 +15,16 @@
             <div class="content-course-detail pt-3">
                 <nav class="mx-2">
                     <div class="nav" id="nav-tab" role="tablist">
-                        <a class="nav-link px-0 mr-4" id="lessons-tab" data-toggle="tab" href="#lessons" role="tab" aria-controls="lessons" aria-selected="true">Lessons</a>
+                        <a class="nav-link active px-0 mr-4" id="lessons-tab" data-toggle="tab" href="#lessons" role="tab" aria-controls="lessons" aria-selected="true">Lessons</a>
                         <a class="nav-link px-0 mx-4" id="teachers-tab" data-toggle="tab" href="#teachers" role="tab" aria-controls="teachers" aria-selected="false">Teachers</a>
-                        <a class="nav-link active px-0 mx-4" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+                        <a class="nav-link px-0 mx-4" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
                     </div>
                 </nav>
                 <div class="tab-content">
-                    <div class="container tab-pane fade" id="lessons" role="tabpanel" aria-labelledby="lessons-tab">
+                    <div class="container tab-pane fade show active" id="lessons" role="tabpanel" aria-labelledby="lessons-tab">
                         <div class="row">
                             <div class="course-detail-search col-8">
-                                <form action="{{ route('course-detail.search', $courseDetail->id)}}" method="get" class="d-flex flex-row p-r">
+                                <form action="{{ route('course.detail.search', $courseDetail->id)}}" method="get" class="d-flex flex-row p-r">
                                     <input type="text" name="search" placeholder="Search..." class="w-50 form-control my-4 ml-3" @if (isset($keyword)) value="{{ $keyword }}" @endif>
                                     <button type="submit" class="btn icon-search position-relative p-0">
                                         <i class="fa fa-search"></i>
@@ -110,7 +110,7 @@
                             Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
                         </div>
                     </div>
-                    <div class="container tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    <div class="container tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         <div class="title-teacher my-4 pt-3">05 Reviews</div>
                         <hr>
                         <div class="row no-gutters">
