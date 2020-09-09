@@ -27,15 +27,11 @@
                         <div class="title-teacher my-4 mx-3 pt-3">
                             Descriptions lesson
                         </div>
-                        <div class="teacher-desc mx-3">
-                            Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique fringilla tempus. Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ligula libero, feugiat faucibus mattis eget, pulvinar et ligula.
-                        </div>
+                        <div class="teacher-desc mx-3">{{ $lesson->description }}</div>
                         <div class="title-teacher my-4 mx-3 pt-3">
                             Requirements
                         </div>
-                        <div class="teacher-desc mx-3">
-                            Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique fringilla tempus. Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ligula libero, feugiat faucibus mattis eget, pulvinar et ligula.
-                        </div>
+                        <div class="teacher-desc mx-3">{{ $lesson->requirement }}</div>
                         <div class="tag mx-3 mt-4">
                             <span>Tag:</span>
                             <a href="" class="btn btn-tag mx-2">#learn</a>
