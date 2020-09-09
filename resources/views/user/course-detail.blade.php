@@ -263,7 +263,7 @@
                 </div>
                 <hr>
                 <div class="element py-3">
-                    <i class="fa fa-clock"></i> Time: {{ $courseDetail->time }} hours
+                    <i class="fa fa-clock"></i> Time: {{ $courseDetail->time_lesson }} hours
                 </div>
                 <hr>
                 <div class="element py-3">

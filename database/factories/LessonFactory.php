@@ -10,6 +10,7 @@ $factory->define(Lesson::class, function (Faker $faker) {
         'name' => $faker->text(30),
         'description' => $faker->text(100),
         'requirement' => $faker->text(100),
-        'course_id' => '79',
+        'time' => rand(50, 100),
+        'course_id' => '1',
     ];
 });

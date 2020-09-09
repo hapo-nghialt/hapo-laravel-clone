@@ -278,7 +278,7 @@
                 </div>
                 <hr>
                 <div class="element py-3">
-                    <i class="fa fa-clock"></i> Time: 100 hours
+                    <i class="fa fa-clock"></i> Time: {{ $lesson->time }} hours
                 </div>
                 <hr>
                 <div class="element py-3">
@@ -286,7 +286,7 @@
                 </div>
                 <hr>
                 <div class="element py-3">
-                    <i class="far fa-money-bill-alt"></i> Price: 100 USD
+                    <i class="far fa-money-bill-alt"></i> Price: {{ $lesson->course->price }} USD
                 </div>
                 <hr>
                 <div class="d-flex align-items-center justify-content-center py-2">

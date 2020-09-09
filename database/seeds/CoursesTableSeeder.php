@@ -28,8 +28,8 @@ class CoursesTableSeeder extends Seeder
             Course::create([
                 'name' => $name[$i],
                 'description' => $description,
-                'time' => 80,
                 'teacher_id' => 1,
+                'price' => rand(100, 500)
             ]);
         }
     }

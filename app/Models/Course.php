@@ -26,6 +26,11 @@ class Course extends Model
         return $this->lessons()->count();
     }
 
+    public function getTimeLessonAttribute()
+    {
+        return $this->lessons()->sum('time');
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
