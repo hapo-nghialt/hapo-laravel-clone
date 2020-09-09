@@ -208,8 +208,6 @@ main {
   border-radius: 10px;
 
   nav {
-    border-bottom: 2px solid #DADADA;
-
     a {
       @include UTM(bold, 20px, 25px, $gray, -0.02em);
     }
@@ -217,6 +215,10 @@ main {
     .active {
       border-bottom: 2px solid $main_color;
       color: $main_color;
+    }
+
+    hr {
+      margin-top: -1px;
     }
   }
 }
@@ -439,6 +441,40 @@ main {
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
     color: #C59B08;
+}
+
+.tag {
+  span {
+    @include UTM(bold, 20px, 25px, $gray, -0.02em);
+  }
+
+  .btn-tag {
+    background: #F2F2F2;
+    border: 1px solid #E4E4E4;
+    box-sizing: border-box;
+    border-radius: 3px;
+    @include UTM(normal, 14px, 17px, #949292, -0.02em);
+  }
+}
+
+.blank-space {
+  height: 100px;
+}
+
+.program-list {
+  .program-type {
+    @include UTM(normal, 14px, 17px, #BDB9B9, -0.02em);
+
+    i {
+      color: $main_color;
+      font-size: 20px;
+    }
+  }
+
+  .program-action {
+    -webkit-text-stroke-width: 1px;
+    @include UTM(bold, 18px, 22px, $gray, -0.02em)
+  }
 }
 
 .banner {

@@ -6,9 +6,10 @@
         <a href="" class="btn btn-filter mt-4 ml-1"><i class="fa fa-sliders"></i>&nbsp;Filter</a>
         <form action="{{ route('course.search') }}" method="get" class="w-25 d-flex flex-row">
             <input type="text" name="course_search" placeholder="Search..." class="form-control mt-4 ml-3" @if (isset($keyword)) value="{{ $keyword }}" @endif>
-            <button type="submit" class="btn btn-search position-relative p-0 mt-4">
+            <button type="submit" class="btn icon-search position-relative p-0 mt-4">
                 <i class="fa fa-search"></i>
             </button>
+            <button type="submit" class="my-4 btn btn-search">Tìm kiếm</button>
         </form>
     </div>
     <div class="row mt-2">
