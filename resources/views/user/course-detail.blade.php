@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="header-course-detail container-fluid py-3">
-    <span class="pl-4"><a href="{{ route('home') }}">Home</a> > <a href="{{ route('course') }}">All courses</a> > <a href="">Course detail</a></span> {{ Auth::user()->id }}
+    <span class="pl-4"><a href="{{ route('home') }}">Home</a> > <a href="{{ route('course') }}">All courses</a> > <a href="">Course detail</a></span>
 </div>
 <div class="container">
     <div class="row">
