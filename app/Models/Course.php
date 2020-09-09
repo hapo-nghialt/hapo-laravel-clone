@@ -56,10 +56,9 @@ class Course extends Model
     public function getCheckUserAttribute()
     {
         $check = [];
-        if (Auth::user())
-            {
-                $check = $this->users()->wherePivot("user_id", Auth::user()->id)->get();
-            }
+        if (Auth::user()) {
+            $check = $this->users()->wherePivot("user_id", Auth::user()->id)->get();
+        }
         return count($check);
     }
 
