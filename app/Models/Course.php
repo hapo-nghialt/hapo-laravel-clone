@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Lesson;
 use App\Models\Review;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Course extends Model
 {
@@ -39,6 +41,25 @@ class Course extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function userCourse()
+    {
+        return $this->hasMany(CourseUser::class);
+    }
+
+    public function getCourseUserAttribute()
+    {
+        return $this->userCourse()->distinct('user_id')->count();
+    }
+
+    public function getCheckUserAttribute()
+    {
+        $check = [];
+        if (Auth::user()) {
+            $check = $this->users()->wherePivot("user_id", Auth::user()->id)->get();
+        }
+        return count($check);
     }
 
     public function reviews()

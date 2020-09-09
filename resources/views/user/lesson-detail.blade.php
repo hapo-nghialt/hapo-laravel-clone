@@ -270,7 +270,7 @@
                 </div>
                 <hr>
                 <div class="element py-3">
-                    <i class="fa fa-users"></i> Learners : 500
+                    <i class="fa fa-users"></i> Learners : {{ $lesson->lesson_user }}
                 </div>
                 <hr>
                 <div class="element py-3">

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','HapoLearn')
 @section('content')
+<div class="main-background-color">
     <section class="banner container-fluid d-flex align-items-center">
         <div class="content-banner">
             <div class="slogan-banner">
@@ -173,4 +174,5 @@
             </div>
         </div>
     </section>
+</div>
 @endsection

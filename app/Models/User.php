@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Course;
-use Review;
-use Lesson;
+use App\Models\Course;
+use App\Models\Review;
+use App\Models\Lesson;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;

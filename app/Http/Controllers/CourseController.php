@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -28,7 +29,7 @@ class CourseController extends Controller
         $lessons = $courseDetail->lessons()
             ->paginate(config('variable.pagination-lesson'));
         
-        return view('user.course-detail', compact('courseDetail', 'lessons'));
+        return view('user.course-detail', compact('courseDetail', 'lessons', 'id'));
     }
 
     public function searchCourseDetail(Request $request, $id)
@@ -39,5 +40,19 @@ class CourseController extends Controller
             ->where('name', 'like', '%' . $keyword . '%')
             ->paginate(config('variable.pagination-lesson'));
         return view('user.course-detail', compact('courseDetail', 'lessons', 'keyword'));
+    }
+
+    public function takeCourse($id)
+    {
+        $course = Course::find($id);
+        $course->users()->attach(Auth::user()->id);
+        return redirect()->back();
+    }
+
+    public function leaveCourse($id)
+    {
+        $course = Course::find($id);
+        $course->users()->detach(Auth::user()->id);
+        return redirect()->back();
     }
 }

@@ -4,12 +4,12 @@
 <div class="list-courses container">
     <div class="courses-search d-flex flex-row">
         <a href="" class="btn btn-filter mt-4 ml-1"><i class="fa fa-sliders"></i>&nbsp;Filter</a>
-        <form action="{{ route('course.search') }}" method="get" class="w-25 d-flex flex-row">
+        <form action="{{ route('course.search') }}" method="get" class="w-50 d-flex flex-row">
             <input type="text" name="course_search" placeholder="Search..." class="form-control mt-4 ml-3" @if (isset($keyword)) value="{{ $keyword }}" @endif>
             <button type="submit" class="btn icon-search position-relative p-0 mt-4">
                 <i class="fa fa-search"></i>
             </button>
-            <button type="submit" class="my-4 btn btn-search">Tìm kiếm</button>
+            <button type="submit" class="btn btn-search mt-4 w-25">Tìm kiếm</button>
         </form>
     </div>
     <div class="row mt-2">
@@ -34,13 +34,13 @@
                 </div>
                 <div class="row text-center">
                     <div class="col-xl-4 py-3">
-                        <p class="m-0">Learners</p><b>16,882</b>
+                        <p class="m-0">Learners</p><b>{{ $item->course_user }}</b>
                     </div>
                     <div class="col-xl-4 py-3">
-                        <p class="m-0">Lessons</p><b>2,689</b>
+                        <p class="m-0">Lessons</p><b>{{ $item->number_lesson }}</b>
                     </div>
                     <div class="col-xl-4 py-3">
-                        <p class="m-0">Quizzes</p><b>16,882</b>
+                        <p class="m-0">Times</p><b>{{ $item->time_lesson }} (h)</b>
                     </div>
                 </div>
             </div>
