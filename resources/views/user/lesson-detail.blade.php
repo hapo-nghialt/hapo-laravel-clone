@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title')
-    Course | {{ $courseDetail->name }}
+    Lesson
 @endsection
 @section('content')
 <div class="header-course-detail container-fluid py-3">
-    <span class="pl-4"><a href="{{ route('home') }}">Home</a> > <a href="{{ route('course') }}">All courses</a> > <a href="">Course detail</a></span>
+    <span class="pl-4"><a href="{{ route('home') }}">Home</a> > <a href="{{ route('course') }}">All courses</a> > <a href="{{ route('course.detail', $lesson->course_id) }}">Course detail</a> > <a href="">Lesson detail</a></span>
 </div>
 <div class="container">
     <div class="row">
@@ -15,40 +15,35 @@
             <div class="content-course-detail pt-3">
                 <nav class="mx-4">
                     <div class="nav" id="nav-tab" role="tablist">
-                        <a class="nav-link active px-0 py-3 mr-5" id="lessons-tab" data-toggle="tab" href="#lessons" role="tab" aria-controls="lessons" aria-selected="true">Lessons</a>
+                        <a class="nav-link active px-0 py-3 mr-5" id="descriptions-tab" data-toggle="tab" href="#descriptions" role="tab" aria-controls="descriptions" aria-selected="true">Descriptions</a>
                         <a class="nav-link px-0 py-3 mx-5" id="teachers-tab" data-toggle="tab" href="#teachers" role="tab" aria-controls="teachers" aria-selected="false">Teachers</a>
+                        <a class="nav-link px-0 py-3 mx-5" id="program-tab" data-toggle="tab" href="#program" role="tab" aria-controls="program" aria-selected="false">Program</a>
                         <a class="nav-link px-0 py-3 mx-5" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
                     </div>
                     <hr>
                 </nav>
                 <div class="tab-content">
-                    <div class="container tab-pane fade show active" id="lessons" role="tabpanel" aria-labelledby="lessons-tab">
-                        <div class="row">
-                            <div class="course-detail-search col-8">
-                                <form action="{{ route('course.detail.search', $courseDetail->id)}}" method="get" class="d-flex flex-row p-r">
-                                    <input type="text" name="search" placeholder="Search..." class="w-50 form-control my-4 ml-3" @if (isset($keyword)) value="{{ $keyword }}" @endif>
-                                    <button type="submit" class="btn icon-search position-relative p-0">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                <button type="submit" class="my-4 btn btn-search">Tìm kiếm</button>
-                                </form>
-                            </div>
-                            <div class="col-4 my-4 px-4">
-                                <button class="btn btn-join-courses px-4">Tham gia khóa học</button>
-                            </div>
+                    <div class="container tab-pane fade show active pb-5" id="descriptions" role="tabpanel" aria-labelledby="descriptions-tab">
+                        <div class="title-teacher my-4 mx-3 pt-3">
+                            Descriptions lesson
                         </div>
-                        <div class="ml-4">
-                            @foreach ($lessons as $key => $item)
-                            <hr>
-                            <div class="lesson-list d-flex justify-content-between align-items-center pr-3">
-                                {{ ++$key }} . {{ $item->name }}
-                                <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-learn px-4">Learn</button></a>
-                            </div>
-                            @endforeach
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                {{ $lessons->appends($_GET)->links() }}
-                            </div>
+                        <div class="teacher-desc mx-3">
+                            Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique fringilla tempus. Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ligula libero, feugiat faucibus mattis eget, pulvinar et ligula.
+                        </div>
+                        <div class="title-teacher my-4 mx-3 pt-3">
+                            Requirements
+                        </div>
+                        <div class="teacher-desc mx-3">
+                            Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique fringilla tempus. Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ligula libero, feugiat faucibus mattis eget, pulvinar et ligula.
+                        </div>
+                        <div class="tag mx-3 mt-4">
+                            <span>Tag:</span>
+                            <a href="" class="btn btn-tag mx-2">#learn</a>
+                            <a href="" class="btn btn-tag mx-2">#html</a>
+                            <a href="" class="btn btn-tag mx-2">#css</a>
+                            <a href="" class="btn btn-tag mx-2">#coder</a>
+                            <a href="" class="btn btn-tag mx-2">#developer</a>
+                            <a href="" class="btn btn-tag mx-2">#js</a>
                         </div>
                     </div>
                     <div class="container tab-pane fade mx-3 pb-4" id="teachers" role="tabpanel" aria-labelledby="teachers-tab">
@@ -114,6 +109,35 @@
                             </div>
                             <div class="teacher-desc mt-3 mb-5 mr-3">
                                 Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container tab-pane fade pb-4" id="program" role="tabpanel" aria-labelledby="program-tab">
+                        <div class="title-teacher my-4 mx-3 pt-3">
+                            Program
+                        </div>
+                        <hr>
+                        <div class="program-list d-flex align-items-center pr-3">
+                            <div class="program-type col-2"><i class="far fa-file-word mr-2"></i>Lesson</div>
+                            <div class="program-action col-8">Program learn HTML/CSS</div>
+                            <div class="col-2">
+                                <a href=""><button class="btn btn-learn px-4">Preview</button></a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="program-list d-flex align-items-center pr-3">
+                            <div class="program-type col-2"><i class="far fa-file-pdf mr-2"></i>PDF</div>
+                            <div class="program-action col-8">Download course slides</div>
+                            <div class="col-2">
+                                <a href=""><button class="btn btn-learn px-4">Preview</button></a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="program-list d-flex align-items-center pr-3">
+                            <div class="program-type col-2"><i class="far fa-file-video mr-2"></i>Video</div>
+                            <div class="program-action col-8">Download course videos</div>
+                            <div class="col-2">
+                                <a href=""><button class="btn btn-learn px-4">Preview</button></a>
                             </div>
                         </div>
                     </div>
@@ -244,26 +268,17 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="description-course-detail p-3 my-4">
-                <div class="description-title mt-3">
-                    Descriptions course
+            <div class="statistic-course p-3 my-4">
+                <div class="element py-3">
+                    <i class="fas fa-desktop"></i> Course: {{ $lesson->course->name }}
                 </div>
-                <hr class="underline-description">
-                <div class="description-content mb-3">
-                    Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique fringilla tempus. Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique.
-                </div>
-            </div>
-            <div class="statistic-course p-3">
+                <hr>
                 <div class="element py-3">
                     <i class="fa fa-users"></i> Learners : 500
                 </div>
                 <hr>
                 <div class="element py-3">
-                    <i class="far fa-list-alt"></i> Lessons: {{ $courseDetail->number_lesson }} lessons
-                </div>
-                <hr>
-                <div class="element py-3">
-                    <i class="fa fa-clock"></i> Time: {{ $courseDetail->time }} hours
+                    <i class="fa fa-clock"></i> Time: 100 hours
                 </div>
                 <hr>
                 <div class="element py-3">
@@ -271,7 +286,11 @@
                 </div>
                 <hr>
                 <div class="element py-3">
-                    <i class="far fa-money-bill-alt"></i> Price: {{ $courseDetail->price }} USD
+                    <i class="far fa-money-bill-alt"></i> Price: 100 USD
+                </div>
+                <hr>
+                <div class="d-flex align-items-center justify-content-center py-2">
+                    <a href="" class="btn btn-join-courses px-4">Kết thúc khóa học</a>
                 </div>
             </div>
             <div class="other-courses-element mt-4">
@@ -297,7 +316,7 @@
                         5. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
                     </div>
                     <div class="d-flex align-items-center justify-content-center py-4">
-                        <a href="{{ route('course') }}" class="btn btn-other-courses">View all ours courses</a>
+                        <a href="{{ route('course') }}" class="btn btn-other-courses px-4">View all ours courses</a>
                     </div>
                 </div>
             </div>

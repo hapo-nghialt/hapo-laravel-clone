@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Course;
-use User;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
