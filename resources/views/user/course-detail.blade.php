@@ -34,7 +34,21 @@
                                 </form>
                             </div>
                             <div class="col-4 my-4 px-4">
-                                <button class="btn btn-join-courses px-4">Tham gia khóa học</button>
+                                @if ($courseDetail->check_user)
+                                    <form action="{{ route('leave.course', $courseDetail->id) }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-join-courses px-4">Kết thúc khóa học</button>
+                                    </form>
+                                @else
+                                    @if (Auth::check())
+                                    <form action="{{ route('take.course', $courseDetail->id) }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-join-courses px-4">Tham gia khóa học</button>
+                                    </form>
+                                    @else
+                                        <a data-target="#myModal" data-toggle="modal" href="#" class="btn btn-join-courses px-4">Tham gia khóa học</a>
+                                    @endif
+                                @endif
                             </div>
                         </div>
                         <div class="ml-4">
@@ -42,7 +56,9 @@
                             <hr>
                             <div class="lesson-list d-flex justify-content-between align-items-center pr-3">
                                 {{ ++$key }} . {{ $item->name }}
+                                @if($courseDetail->check_user)
                                 <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-learn px-4">Learn</button></a>
+                                @endif
                             </div>
                             @endforeach
                             <hr>
@@ -255,7 +271,7 @@
             </div>
             <div class="statistic-course p-3">
                 <div class="element py-3">
-                    <i class="fa fa-users"></i> Learners : 500
+                    <i class="fa fa-users"></i> Learners : {{ $courseDetail->course_user }}
                 </div>
                 <hr>
                 <div class="element py-3">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Course;
 use App\Models\User;
+use App\Models\CourseUser;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
@@ -20,6 +21,16 @@ class Lesson extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'course_user');
+    }
+
+    public function userLesson()
+    {
+        return $this->hasMany(CourseUser::class);
+    }
+
+    public function getLessonUserAttribute()
+    {
+        return $this->userLesson()->count();
     }
 
     public function reviews()

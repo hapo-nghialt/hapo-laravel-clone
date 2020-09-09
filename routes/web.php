@@ -20,4 +20,6 @@ Route::get('/search-course', 'CourseController@searchCourse')->name('course.sear
 Route::get('/course-detail/{id}', 'CourseController@showCourseDetail')->name('course.detail');
 Route::get('/lesson-detail/{id}', 'LessonController@show')->name('lesson.detail');
 Route::get('/search-course-detail/{id}', 'CourseController@searchCourseDetail')->name('course.detail.search');
+Route::post('take-course/{id}', "CourseController@takeCourse")->name('take.course');
+Route::post('leave-course/{id}', "CourseController@leaveCourse")->name('leave.course');
 Auth::routes();
