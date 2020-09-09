@@ -15,6 +15,8 @@ class UpdateCoursesTable extends Migration
     {
         Schema::table('courses', function (Blueprint $table) {
             $table->dropColumn('time');
+        });
+        Schema::table('courses', function (Blueprint $table) {
             $table->dropColumn('quizze');
         });
     }
