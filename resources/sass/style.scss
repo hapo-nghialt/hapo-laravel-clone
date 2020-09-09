@@ -211,8 +211,8 @@ main {
   background-color: $main_font_color;
   border-radius: 10px;
 
-  nav {
-    a {
+  .nav-bar-course {
+    .nav-link {
       @include UTM(bold, 20px, 25px, $gray, -0.02em);
     }
     
@@ -223,6 +223,24 @@ main {
 
     hr {
       margin-top: -1px;
+    }
+  }
+
+  .pagination {
+    .page-link {
+      background-color: $main_font_color;
+      border: 1px solid #B2D235;
+      box-sizing: border-box;
+      border-radius: 3px;
+      margin: 0 5px;
+      @include UTM(bold, 20px, 25px, $main_color, -0.02em);
+    }
+    
+    .active {
+      .page-link {
+        background-color: $main_color;
+        @include UTM(bold, 20px, 25px, $main_font_color, -0.02em);
+      }
     }
   }
 }
@@ -241,6 +259,18 @@ main {
 .btn-learn {
   background-color: $main_color;
   box-shadow: inset 0px 1.5px 2px #6F8710;
+  border-radius: 22px;
+  @include UTM(bold, 15px, 18px, $main_font_color, -0.05em);
+  
+  &:hover {
+    opacity: 0.8;
+    color: #000000;
+  }
+}
+
+.btn-review {
+  background-color: $blue;
+  box-shadow: inset 0px 1.5px 2px #1B75BB;
   border-radius: 22px;
   @include UTM(bold, 15px, 18px, $main_font_color, -0.05em);
   

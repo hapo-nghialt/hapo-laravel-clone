@@ -22,4 +22,5 @@ Route::get('/lesson-detail/{id}', 'LessonController@show')->name('lesson.detail'
 Route::get('/search-course-detail/{id}', 'CourseController@searchCourseDetail')->name('course.detail.search');
 Route::post('take-course/{id}', "CourseController@takeCourse")->name('take.course');
 Route::post('leave-course/{id}', "CourseController@leaveCourse")->name('leave.course');
+Route::post('take-lesson/{id}', "LessonController@takeLesson")->name('take.lesson');
 Auth::routes();

@@ -13,7 +13,7 @@
                 <img class="img-fluid w-50 py-5" src="/images/logoHTML.png" alt="">
             </div>
             <div class="content-course-detail pt-3">
-                <nav class="mx-4">
+                <nav class="nav-bar-course mx-4">
                     <div class="nav" id="nav-tab" role="tablist">
                         <a class="nav-link active px-0 py-3 mr-5" id="lessons-tab" data-toggle="tab" href="#lessons" role="tab" aria-controls="lessons" aria-selected="true">Lessons</a>
                         <a class="nav-link px-0 py-3 mx-5" id="teachers-tab" data-toggle="tab" href="#teachers" role="tab" aria-controls="teachers" aria-selected="false">Teachers</a>
@@ -51,18 +51,25 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="ml-4">
+                        <div class="ml-4 pb-3">
                             @foreach ($lessons as $key => $item)
                             <hr>
                             <div class="lesson-list d-flex justify-content-between align-items-center pr-3">
                                 {{ ++$key }} . {{ $item->name }}
                                 @if($courseDetail->check_user)
-                                <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-learn px-4">Learn</button></a>
+                                    @if ($item->check_user_learn)
+                                        <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-review px-4">Learned</button></a>
+                                    @else
+                                        <form action="{{ route('take.lesson', $item->id) }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-learn px-4 mr-2">Learn</button>
+                                        </form>
+                                    @endif
                                 @endif
                             </div>
                             @endforeach
                             <hr>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end pt-3">
                                 {{ $lessons->appends($_GET)->links() }}
                             </div>
                         </div>

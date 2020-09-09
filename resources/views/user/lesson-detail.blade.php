@@ -13,7 +13,7 @@
                 <img class="img-fluid w-50 py-5" src="/images/logoHTML.png" alt="">
             </div>
             <div class="content-course-detail pt-3">
-                <nav class="mx-4">
+                <nav class="nav-bar-course mx-4">
                     <div class="nav" id="nav-tab" role="tablist">
                         <a class="nav-link active px-0 py-3 mr-5" id="descriptions-tab" data-toggle="tab" href="#descriptions" role="tab" aria-controls="descriptions" aria-selected="true">Descriptions</a>
                         <a class="nav-link px-0 py-3 mx-5" id="teachers-tab" data-toggle="tab" href="#teachers" role="tab" aria-controls="teachers" aria-selected="false">Teachers</a>
@@ -286,7 +286,10 @@
                 </div>
                 <hr>
                 <div class="d-flex align-items-center justify-content-center py-2">
-                    <a href="" class="btn btn-join-courses px-4">Kết thúc khóa học</a>
+                    <form action="{{ route('leave.course', $lesson->course->id) }}" method="post">
+                        @csrf
+                        <button class="btn btn-join-courses px-4">Kết thúc khóa học</button>
+                    </form>
                 </div>
             </div>
             <div class="other-courses-element mt-4">
