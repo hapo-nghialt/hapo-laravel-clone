@@ -44,15 +44,15 @@ class CourseController extends Controller
 
     public function takeCourse($id)
     {
-        $course = Course::find($id);
+        $course = Course::findOrFail($id);
         $course->users()->attach(Auth::user()->id);
-        return redirect()->back();
+        return redirect()->route('course.detail', $id);
     }
 
     public function leaveCourse($id)
     {
-        $course = Course::find($id);
+        $course = Course::findOrFail($id);
         $course->users()->detach(Auth::user()->id);
-        return redirect()->back();
+        return redirect()->route('course.detail', $id);
     }
 }

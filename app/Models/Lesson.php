@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\CourseUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Lesson extends Model
 {
@@ -31,6 +32,15 @@ class Lesson extends Model
     public function getLessonUserAttribute()
     {
         return $this->userLesson()->count();
+    }
+    
+    public function getCheckUserLearnAttribute()
+    {
+        $check = [];
+        if (Auth::user()) {
+            $check = $this->users()->wherePivot("user_id", Auth::user()->id)->get();
+        }
+        return count($check);
     }
 
     public function reviews()
