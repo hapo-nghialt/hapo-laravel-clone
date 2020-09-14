@@ -17,7 +17,6 @@ class ReviewController extends Controller
             "target_id" => $request->course_id,
             "user_id" => Auth::user()->id,
         ]);
-        // return response()->json(["review" => $review, "username" => Auth::user()->name, "course_id" => $id]);
         return redirect()->back();
     }
 
