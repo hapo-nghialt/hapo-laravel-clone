@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use User;
-use Course;
-use Lesson;
+use App\Models\User;
+use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
     protected $fillable = [
-        'content', 'rate', 'type', 'target_id',
+        'content', 'rate', 'type', 'target_id', 'user_id'
     ];
 
     const TYPE = [

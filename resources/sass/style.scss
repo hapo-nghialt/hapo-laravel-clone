@@ -225,7 +225,9 @@ main {
       margin-top: -1px;
     }
   }
+}
 
+.pagination-custom {
   .pagination {
     .page-link {
       background-color: $main_font_color;
@@ -256,7 +258,8 @@ main {
   @include UTM(bold, 18px, 22px, $gray, -0.02em);
 }
 
-.btn-learn {
+.btn-learn,
+.btn-edit-review {
   background-color: $main_color;
   box-shadow: inset 0px 1.5px 2px #6F8710;
   border-radius: 22px;
@@ -268,7 +271,7 @@ main {
   }
 }
 
-.btn-review {
+.btn-learned {
   background-color: $blue;
   box-shadow: inset 0px 1.5px 2px #1B75BB;
   border-radius: 22px;
@@ -368,7 +371,8 @@ main {
     @include UTM(bold, 60px, 74px, $main_font_color, -0.02em);
   }
 
-  .fa-star {
+  .fa-star,
+  .fa-star-half-alt {
     color: #FFD567;
     font-size: 25px;
   }
@@ -413,7 +417,8 @@ main {
       @include UTM(bold, 18px, 22px, $gray, -0.02em);
     }
   
-    .fa-star {
+    .fa-star,
+    .fa-star-half-alt {
       color: #FFD567;
       font-size: 15px;
     }
@@ -425,6 +430,10 @@ main {
 
   .review-text {
     @include UTM(normal, 18px, 26px, #949292, -0.02em);
+
+    .btn {
+      font-size: 20px;
+    }
   }
 }
 
@@ -458,6 +467,14 @@ main {
 
 .rating:not(:checked) > label:before {
   content: '★ ';
+}
+
+.rating:not(:checked) .half:before {
+  content: '★ ';
+  position: absolute;
+  width: 8px;
+  margin-left: 18px;
+  overflow: hidden;
 }
 
 .rating > input:checked ~ label {
@@ -508,6 +525,18 @@ main {
   .program-action {
     -webkit-text-stroke-width: 1px;
     @include UTM(bold, 18px, 22px, $gray, -0.02em)
+  }
+}
+
+.btn-return {
+  background-color: $red;
+  box-shadow: inset 0px 1.5px 2px #CC2525;
+  border-radius: 22px;
+  @include UTM(bold, 15px, 18px, $main_font_color, -0.05em);
+  
+  &:hover {
+    opacity: 0.8;
+    color: $pink;
   }
 }
 

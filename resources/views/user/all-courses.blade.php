@@ -3,7 +3,7 @@
 @section('content')
 <div class="list-courses container">
     <div class="courses-search d-flex flex-row">
-        <a href="" class="btn btn-filter mt-4 ml-1"><i class="fa fa-sliders"></i>&nbsp;Filter</a>
+        <a href="" class="btn btn-filter mt-4 ml-1"><i class="fas fa-sliders-h"></i>&nbsp;Filter</a>
         <form action="{{ route('course.search') }}" method="get" class="w-50 d-flex flex-row">
             <input type="text" name="course_search" placeholder="Search..." class="form-control mt-4 ml-3" @if (isset($keyword)) value="{{ $keyword }}" @endif>
             <button type="submit" class="btn icon-search position-relative p-0 mt-4">
@@ -28,7 +28,13 @@
                             {{ $item->description }}
                         </div>
                         <div class="d-flex justify-content-end mr-4 mt-3">
-                            <a href="{{ route('course.detail', $item->id) }}" class="btn btn-more w-25">More</a>
+                            @if (Auth::check())
+                                <form action="{{ route('course.detail', $item->id) }}" method="GET">
+                                    <button class="btn btn-more px-4">More</button>
+                                </form>
+                            @else
+                                <a data-target="#myModal" data-toggle="modal" href="#" class="btn btn-more w-25">More</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -47,6 +53,8 @@
         </div>
         @endforeach
     </div>
-    {{ $courses->appends($_GET)->links() }}
+    <div class="pagination-custom d-flex justify-content-end">
+        {{ $courses->appends($_GET)->links() }}
+    </div>
 </div>
 @endsection

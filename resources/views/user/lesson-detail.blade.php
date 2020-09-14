@@ -295,27 +295,16 @@
             <div class="other-courses-element mt-4">
                 <div class="title py-3">Other Courses</div>
                 <div class="other-courses-list p-3">
-                    <div class="other-courses-item">
-                        1. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        2. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        3. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        4. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        5. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center py-4">
-                        <a href="{{ route('course') }}" class="btn btn-other-courses px-4">View all ours courses</a>
+                    @foreach ($lesson->course->getOtherCourses() as $key => $courses)
+                        <a href="{{ route('course.detail', $courses->id) }}">
+                            <div class="other-courses-item">
+                                {{ ++$key }}. {{ $courses->name }}
+                            </div>
+                        </a>
+                        <hr>
+                    @endforeach
+                    <div class="d-flex align-items-center justify-content-center py-2">
+                        <a href="{{ route('course') }}" class="btn btn-other-courses">View all ours courses</a>
                     </div>
                 </div>
             </div>

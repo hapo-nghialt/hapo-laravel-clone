@@ -40,14 +40,10 @@
                                         <button class="btn btn-join-courses px-4">Kết thúc khóa học</button>
                                     </form>
                                 @else
-                                    @if (Auth::check())
                                     <form action="{{ route('take.course', $courseDetail->id) }}" method="post">
                                         @csrf
                                         <button class="btn btn-join-courses px-4">Tham gia khóa học</button>
                                     </form>
-                                    @else
-                                        <a data-target="#myModal" data-toggle="modal" href="#" class="btn btn-join-courses px-4">Tham gia khóa học</a>
-                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -58,7 +54,7 @@
                                 {{ ++$key }} . {{ $item->name }}
                                 @if($courseDetail->check_user)
                                     @if ($item->check_user_learn)
-                                        <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-review px-4">Learned</button></a>
+                                        <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-learned px-4">Learned</button></a>
                                     @else
                                         <form action="{{ route('take.lesson', $item->id) }}" method="post">
                                             @csrf
@@ -69,7 +65,7 @@
                             </div>
                             @endforeach
                             <hr>
-                            <div class="d-flex justify-content-end pt-3">
+                            <div class="pagination-custom d-flex justify-content-end pt-3">
                                 {{ $lessons->appends($_GET)->links() }}
                             </div>
                         </div>
@@ -142,21 +138,25 @@
                     </div>
                     <div class="container tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         <div class="title-teacher my-4 mx-3 pt-3">
-                            05 Reviews
+                            {{ $courseDetail->course_review }} Reviews  
                         <hr>
                         </div>
                         <div class="row no-gutters">
                             <div class="col-5">
                                 <div class="rating-star d-flex flex-column justify-content-center align-items-center py-4 ml-3 mr-4">
-                                    <div class="rating-star-number">5</div>
+                                    <div class="rating-star-number">{{ $courseDetail->course_review_average }} / 5</div>
                                     <div class="mt-1">
-                                        <i class="fas fa-star">&nbsp;</i>
-                                        <i class="fas fa-star">&nbsp;</i>
-                                        <i class="fas fa-star">&nbsp;</i>
-                                        <i class="fas fa-star">&nbsp;</i>
-                                        <i class="fas fa-star">&nbsp;</i>
+                                        @for ($i = 1; $i <= $rate['five_star']; $i++)
+                                            @if ($i <= $courseDetail->course_review_average)
+                                                <i class="fas fa-star">&nbsp;</i>
+                                            @elseif ($i - 0.5 < $courseDetail->course_review_average)
+                                                <i class="fas fa-star-half-alt">&nbsp;</i>
+                                            @else
+                                                <i class="far fa-star">&nbsp;</i>
+                                            @endif
+                                        @endfor
                                     </div>
-                                    <div class="rating-times pb-4">2 Ratings</div>
+                                    <div class="rating-times pb-4 pt-2">{{ $courseDetail->course_review }} Ratings</div>
                                 </div>
                             </div>
                             <div class="col-7">
@@ -164,37 +164,42 @@
                                     <div class="d-flex justify-content-between align-items-center m-3">
                                         <div class="rating-total-number">5 stars</div>
                                         <div class="progress w-75 review-bar">
-                                            <div class="progress-bar w-75 bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        <div class="total-stars">5</div>
+                                            <input type="hidden" id="five-star" value="{{ $courseDetail->getPercentRateCourse($rate['five_star']) + $courseDetail->getPercentRateCourse($rate['four_star_and_half']) }}%">
+                                            <div class="progress-bar bg-success" id="five-star-progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="total-stars">{{ $courseDetail->getNumberVote($rate['five_star']) + $courseDetail->getNumberVote($rate['four_star_and_half']) }}</div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center m-3">
                                         <div class="rating-total-number">4 stars</div>
                                         <div class="progress w-75 review-bar">
-                                            <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        <div class="total-stars">5</div>
+                                            <input type="hidden" id="four-star" value="{{ $courseDetail->getPercentRateCourse($rate['four_star']) + $courseDetail->getPercentRateCourse($rate['three_star_and_half']) }}%">
+                                            <div class="progress-bar" id="four-star-progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="total-stars">{{ $courseDetail->getNumberVote($rate['four_star']) + $courseDetail->getNumberVote($rate['three_star_and_half']) }}</div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center m-3">
                                         <div class="rating-total-number">3 stars</div>
                                         <div class="progress w-75 review-bar">
-                                            <div class="progress-bar w-75 bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        <div class="total-stars">5</div>
+                                            <input type="hidden" id="three-star" value="{{ $courseDetail->getPercentRateCourse($rate['three_star']) + $courseDetail->getPercentRateCourse($rate['two_star_and_half']) }}%">
+                                            <div class="progress-bar bg-info" id="three-star-progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="total-stars">{{ $courseDetail->getNumberVote($rate['three_star']) + $courseDetail->getNumberVote($rate['two_star_and_half']) }}</div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center m-3">
                                         <div class="rating-total-number">2 stars</div>
                                         <div class="progress w-75 review-bar">
-                                            <div class="progress-bar w-75 bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        <div class="total-stars">5</div>
+                                            <input type="hidden" id="two-star" value="{{ $courseDetail->getPercentRateCourse($rate['two_star']) + $courseDetail->getPercentRateCourse($rate['one_star_and_half']) }}%">
+                                            <div class="progress-bar bg-warning" id="two-star-progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="total-stars">{{ $courseDetail->getNumberVote($rate['two_star']) + $courseDetail->getNumberVote($rate['one_star_and_half']) }}</div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center m-3">
                                         <div class="rating-total-number">1 stars</div>
                                         <div class="progress w-75 review-bar">
-                                            <div class="progress-bar w-75 bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        <div class="total-stars">5</div>
+                                            <input type="hidden" id="one-star" value="{{ $courseDetail->getPercentRateCourse($rate['one_star']) + $courseDetail->getPercentRateCourse($rate['half_star']) }}%">
+                                            <div class="progress-bar bg-danger" id="one-star-progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="total-stars">{{ $courseDetail->getNumberVote($rate['one_star']) + $courseDetail->getNumberVote($rate['half_star']) }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -202,65 +207,76 @@
                         <hr>
                         <div class="hapo-review-content mx-3">
                             <div class="hapo-review-text my-4">Show all reviews <i class="fas fa-caret-down"></i></div>
-                            <div class="hapo-review">
-                                <div class="hapo-review-user">
-                                    <div class="d-flex align-items-center">
-                                        <img src="/images/kitten-asleep.png" alt="" class="rounded-circle">
-                                        <div class="review-username mx-3">Nam Hoang</div>
-                                        <div class="mr-5">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                            @foreach ($courseDetail->reviews as $review)
+                            <div class="review-{{ $review->id }}">
+                                <div class="hapo-review container" id="list-review">
+                                    <div class="hapo-review-user">
+                                        <div class="d-flex align-items-center">
+                                            <img src="/images/kitten-asleep.png" alt="" class="rounded-circle">
+                                            <div class="review-username mx-3">{{ $review->user->name }}</div>
+                                            <div class="mr-5">
+                                                @for ($i = 1; $i <= $rate['five_star']; $i++)
+                                                    @if ($i <= $review->rate)
+                                                        <i class="fas fa-star">&nbsp;</i>
+                                                    @elseif ($i - 0.5 == $review->rate)
+                                                        <i class="fas fa-star-half-alt">&nbsp;</i>
+                                                    @else
+                                                        <i class="far fa-star">&nbsp;</i>
+                                                    @endif
+                                                @endfor
+                                            </div>
+                                            <div class="review-time">{{ $review->created_at }}</div>
                                         </div>
-                                        <div class="review-time">August 4, 2020 at 1:30 pm</div>
+                                    </div>
+                                    <div class="review-text mt-3 row">
+                                        <div class="col-11 d-flex align-items-center review-content-{{ $review->id }}">
+                                            {{ $review->content }}
+                                        </div>
+                                        @if ($review->user->id == Auth::user()->id)
+                                            <div class="col-1">
+                                                <button title="Edit message" class="btn edit-modal" data-target="#edit-review-modal" data-toggle="modal" data-content="{{ $review->content }}" data-rate="{{ $review->rate }}" data-url="{{ route('review.update', $review->id) }}">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                                <button title="Delete message" class="btn icon-delete-review delete-modal" data-url="{{ route('review.destroy', $review->id) }}">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="review-text mt-3">
-                                    Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
-                                </div>
+                                <hr>
                             </div>
-                            <hr>
-                            <div class="hapo-review">
-                                <div class="hapo-review-user">
-                                    <div class="d-flex align-items-center">
-                                        <img src="/images/kitten-asleep.png" alt="" class="rounded-circle">
-                                        <div class="review-username mx-3">Nam Hoang</div>
-                                        <div class="mr-5">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <div class="review-time">August 4, 2020 at 1:30 pm</div>
-                                    </div>
-                                </div>
-                                <div class="review-text mt-3">
-                                    Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <hr>
                         <div class="m-3">
                             <div class="add-review my-3">Leave a Review</div>
-                            <div class="message-add-review my-3">Message</div>
-                            <textarea name="comment" id="" cols="30" rows="5" class="form-control mb-3"></textarea>
-                            <div class="vote-star-review d-flex align-items-center">
-                                <div class="add-review">Vote</div>
-                                <div class="rating pt-2 px-3">
-                                    <input type="radio" name="rate" id="star1" value="1"><label for="star1">1 stars</label>
-                                    <input type="radio" name="rate" id="star2" value="2"><label for="star2">2 stars</label>
-                                    <input type="radio" name="rate" id="star3" value="3"><label for="star3">3 stars</label>
-                                    <input type="radio" name="rate" id="star4" value="4"><label for="star4">4 stars</label>
-                                    <input type="radio" name="rate" id="star5" value="5"><label for="star5">5 stars</label>
+                            <form method="POST" action="{{ route('review.course.store') }}">
+                                @csrf
+                                <div class="message-add-review my-3">Message</div>
+                                <input type="hidden" id="username" value="{{ Auth::user()->name }}">
+                                <input type="hidden" name="rating_value" class="rating_value">
+                                <input type="hidden" name="course_id" value="{{ $courseDetail->id }}">
+                                <textarea name="content" id="content" cols="30" rows="5" class="form-control mb-3"></textarea>
+                                <div class="vote-star-review d-flex align-items-center">
+                                    <div class="add-review">Vote</div>
+                                    <div class="rating pt-2 px-3">
+                                        <input class="rate" type="radio" name="rate" id="star10" value="5"><label for="star10">5 stars</label>
+                                        <input class="rate" type="radio" name="rate" id="star9" value="4.5"><label for="star9" class="half"></label>
+                                        <input class="rate" type="radio" name="rate" id="star8" value="4"><label for="star8">4 stars</label>
+                                        <input class="rate" type="radio" name="rate" id="star7" value="3.5"><label for="star7" class="half"></label>
+                                        <input class="rate" type="radio" name="rate" id="star6" value="3"><label for="star6">3 stars</label>
+                                        <input class="rate" type="radio" name="rate" id="star5" value="2.5"><label for="star5" class="half"></label>
+                                        <input class="rate" type="radio" name="rate" id="star4" value="2"><label for="star4">2 stars</label>
+                                        <input class="rate" type="radio" name="rate" id="star3" value="1.5"><label for="star3" class="half"></label>
+                                        <input class="rate" type="radio" name="rate" id="star2" value="1"><label for="star2">1 stars</label>
+                                        <input class="rate" type="radio" name="rate" id="star1" value="0.5"><label for="star1" class="half"></label>
+                                    </div>
+                                    <div class="message-add-review">(stars)</div>
                                 </div>
-                                <div class="message-add-review">(stars)</div>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-learn px-4 my-4">Send</button>
-                            </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-learn px-4 my-4">Send</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -300,26 +316,15 @@
             <div class="other-courses-element mt-4">
                 <div class="title py-3">Other Courses</div>
                 <div class="other-courses-list p-3">
-                    <div class="other-courses-item">
-                        1. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        2. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        3. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        4. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <hr>
-                    <div class="other-courses-item">
-                        5. Lorem ipsum dolor sit amet, consectetur the adipiscing elit.
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center py-4">
+                    @foreach ($courseDetail->getOtherCourses() as $key => $courses)
+                        <a href="{{ route('course.detail', $courses->id) }}">
+                            <div class="other-courses-item">
+                                {{ ++$key }}. {{ $courses->name }}
+                            </div>
+                        </a>
+                        <hr>
+                    @endforeach
+                    <div class="d-flex align-items-center justify-content-center py-2">
                         <a href="{{ route('course') }}" class="btn btn-other-courses">View all ours courses</a>
                     </div>
                 </div>
@@ -328,4 +333,5 @@
     </div>
 </div>
 <div class="blank-space"></div>
+@include ('reviews.action-review')
 @endsection
