@@ -86,21 +86,20 @@ $(document).ready(function() {
         $("#content-edit-review-modal").val($(this).data("content"));
         vote = $(this).attr("data-rate");
         $("#editstar" + vote).attr("checked", "true");
-    });
-
-    $("#edit-review-modal").on("click", ".btn-edit-review", function() {
         var url = $(this).attr("data-url");
-        $.ajax ({
-            type: "POST",
-            url: url,
-            data: {
-                "content": $("#content-edit-review-modal").val(),
-                "rate": $(".rating-value").val(),
-            },
-            success: function(response) {
-                console.log(response.success);
-                location.reload();
-            }
+        $("#edit-review-modal").on("click", ".btn-edit-review", function () {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "content": $("#content-edit-review-modal").val(),
+                    "rate": $(".rating-value").val()
+                },
+                success: function success(response) {
+                    console.log(response.success);
+                    location.reload();
+                }
+            });
         });
     });
 
