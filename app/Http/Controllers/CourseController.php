@@ -28,18 +28,7 @@ class CourseController extends Controller
         $courseDetail = Course::find($id);
         $lessons = $courseDetail->lessons()
             ->paginate(config('variable.pagination-lesson'));
-        $rate = [
-            'five_star' => config('variable.five_star'),
-            'four_star_and_half' => config('variable.four_star_and_half'),
-            'four_star' => config('variable.four_star'),
-            'three_star_and_half' => config('variable.three_star_and_half'),
-            'three_star' => config('variable.three_star'),
-            'two_star_and_half' => config('variable.two_star_and_half'),
-            'two_star' => config('variable.two_star'),
-            'one_star_and_half' => config('variable.one_star_and_half'),
-            'one_star' => config('variable.one_star'),
-            'half_star' => config('variable.half_star'),
-        ];
+        $rate = config('variable.rate');
         return view('user.course-detail', compact('courseDetail', 'lessons', 'id', 'rate'));
     }
 
@@ -50,18 +39,7 @@ class CourseController extends Controller
         $lessons = $courseDetail->lessons()
             ->where('name', 'like', '%' . $keyword . '%')
             ->paginate(config('variable.pagination-lesson'));
-        $rate = [
-            'five_star' => config('variable.five_star'),
-            'four_star_and_half' => config('variable.four_star_and_half'),
-            'four_star' => config('variable.four_star'),
-            'three_star_and_half' => config('variable.three_star_and_half'),
-            'three_star' => config('variable.three_star'),
-            'two_star_and_half' => config('variable.two_star_and_half'),
-            'two_star' => config('variable.two_star'),
-            'one_star_and_half' => config('variable.one_star_and_half'),
-            'one_star' => config('variable.one_star'),
-            'half_star' => config('variable.half_star'),
-        ];
+        $rate = config('variable.rate');
         return view('user.course-detail', compact('courseDetail', 'lessons', 'keyword', 'rate'));
     }
 
