@@ -10,7 +10,7 @@ class ReviewController extends Controller
 {
     public function storeCourseReview(Request $request, $id)
     {
-        $review = Review::create([
+        Review::create([
             "content" => $request->content,
             "rate" => $request->rate,
             "type" => Review::TYPE['course'],
