@@ -62,7 +62,7 @@ class Course extends Model
         return count($check);
     }
 
-    public function getOtherCoursesAttribute()
+    public function getOtherCourses()
     {
         return $this->where('id', '!=', $this->id)
             ->take(config('variable.other-courses'))
