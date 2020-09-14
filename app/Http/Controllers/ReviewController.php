@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public function storeCourseReview(Request $request, $id)
+    public function storeCourseReview(Request $request)
     {
         Review::create([
             "content" => $request->content,
