@@ -60,4 +60,60 @@ $(document).ready(function() {
     });
 
     $("[data-toggle='tooltip']").tooltip();
+
+    var fiveStar = document.getElementById("five-star").value;
+    var fourStar = document.getElementById("four-star").value;
+    var threeStar = document.getElementById("three-star").value;
+    var twoStar = document.getElementById("two-star").value;
+    var oneStar = document.getElementById("one-star").value;
+    $('#five-star-progress-bar').width(fiveStar);
+    $('#four-star-progress-bar').width(fourStar);
+    $('#three-star-progress-bar').width(threeStar);
+    $('#two-star-progress-bar').width(twoStar);
+    $('#one-star-progress-bar').width(oneStar);
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $("input[name='rate']").click(function() {
+        $(".rating-value").attr("value", $(this).val());
+    });
+
+    $(document).on("click", ".edit-modal", function() {
+        $("#content-edit-review-modal").val($(this).data("content"));
+        vote = $(this).attr("data-rate");
+        $("#editstar" + vote).attr("checked", "true");
+    });
+
+    $("#edit-review-modal").on("click", ".btn-edit-review", function() {
+        var url = $(this).attr("data-url");
+        $.ajax ({
+            type: "POST",
+            url: url,
+            data: {
+                "content": $("#content-edit-review-modal").val(),
+                "rate": $(".rating-value").val(),
+            },
+            success: function(response) {
+                console.log(response.success);
+                location.reload();
+            }
+        });
+    });
+
+    $(document).on("click", ".icon-delete-review", function() {
+        let url = $(this).attr("data-url");
+        $.ajax ({
+            type: "DELETE",
+            url: url,
+            success: function(response) {
+                console.log(response.review);
+                let classReview = ".review-" + response.review;
+                $(classReview).remove();
+            }
+        });
+    });
 });

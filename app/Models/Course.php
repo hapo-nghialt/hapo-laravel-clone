@@ -62,8 +62,45 @@ class Course extends Model
         return count($check);
     }
 
+    public function getOtherCoursesAttribute()
+    {
+        return $this->where('id', '!=', $this->id)
+            ->take(config('variable.other-courses'))
+            ->get();
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class, 'target_id')->where('type', Review::TYPE['course']);
+    }
+
+    public function getCourseReviewAttribute()
+    {
+        return $this->reviews()->count();
+    }
+
+    public function getCourseReviewAverageAttribute()
+    {
+        return floor($this->reviews()->avg('rate') * 10) / 10;
+    }
+
+    public function getNumberVote($star)
+    {
+        return $this->reviews()->where('rate', $star)->count();
+    }
+
+    public function getPercentRateCourse($star)
+    {
+        if ($this->reviews()->count() != 0)
+        {
+            $total_star = $this->reviews()->count();
+            $number_star = $this->getNumberVote($star);
+            $percent = floor($number_star / $total_star * 10000) / 100;
+        }
+        else
+        {
+            $percent = 0;
+        }
+        return $percent;
     }
 }
