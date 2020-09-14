@@ -91,14 +91,11 @@ class Course extends Model
 
     public function getPercentRateCourse($star)
     {
-        if ($this->reviews()->count() != 0)
-        {
+        if ($this->reviews()->count() != 0) {
             $total_star = $this->reviews()->count();
             $number_star = $this->getNumberVote($star);
             $percent = floor($number_star / $total_star * 10000) / 100;
-        }
-        else
-        {
+        } else {
             $percent = 0;
         }
         return $percent;
