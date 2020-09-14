@@ -295,7 +295,7 @@
             <div class="other-courses-element mt-4">
                 <div class="title py-3">Other Courses</div>
                 <div class="other-courses-list p-3">
-                    @foreach ($lesson->course->other_courses as $key => $courses)
+                    @foreach ($lesson->course->getOtherCourses() as $key => $courses)
                         <a href="{{ route('course.detail', $courses->id) }}">
                             <div class="other-courses-item">
                                 {{ ++$key }}. {{ $courses->name }}

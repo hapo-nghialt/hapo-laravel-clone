@@ -29,7 +29,7 @@
             </div>
             </form>
         <div class="modal-footer pb-0">
-            <button type="button" class="btn btn-edit-review mx-3" data-dismiss="modal" data-url="{{ route('review.update', $review->id) }}">Edit</button>
+            <button type="button" class="btn btn-edit-review mx-3" data-dismiss="modal">Edit</button>
             <button type="button" class="btn btn-return" data-dismiss="modal">Close</button>
         </div>
 </div>

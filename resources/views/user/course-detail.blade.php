@@ -250,7 +250,7 @@
                         </div>
                         <div class="m-3">
                             <div class="add-review my-3">Leave a Review</div>
-                            <form method="POST" action="{{ route('review.course.store', $courseDetail->id) }}">
+                            <form method="POST" action="{{ route('review.course.store') }}">
                                 @csrf
                                 <div class="message-add-review my-3">Message</div>
                                 <input type="hidden" id="username" value="{{ Auth::user()->name }}">
@@ -316,7 +316,7 @@
             <div class="other-courses-element mt-4">
                 <div class="title py-3">Other Courses</div>
                 <div class="other-courses-list p-3">
-                    @foreach ($courseDetail->other_courses as $key => $courses)
+                    @foreach ($courseDetail->getOtherCourses() as $key => $courses)
                         <a href="{{ route('course.detail', $courses->id) }}">
                             <div class="other-courses-item">
                                 {{ ++$key }}. {{ $courses->name }}
