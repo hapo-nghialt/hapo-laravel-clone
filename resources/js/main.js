@@ -96,7 +96,6 @@ $(document).ready(function() {
                     "rate": $(".rating-value").val()
                 },
                 success: function success(response) {
-                    console.log(response.success);
                     location.reload();
                 }
             });
