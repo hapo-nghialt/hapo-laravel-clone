@@ -12,16 +12,21 @@ class CoursesTableSeeder extends Seeder
      */
     public function run()
     {
-        $description = 'I knew hardly anything about HTML, JS, and CSS before entering New Media. 
-        I had coded quite a bit, but never touched anything in regards to web development.';
+        $description = 'Practice during lessons, practice between lessons.';
 
         $name = [
-            'HTML/CSS/js Tutorial',
-            'Laravel Tutorial',
+            'HTML Fundamentals',
+            'CSS Fundamentals',
             'PHP Tutorial',
-            'CSS Tutorial',
-            'Ruby on rails Tutorial',
-            'Java Tutorial',
+            'SQL Fundamentals',
+            'Swift 4 Fundamentals',
+            'C# Tutorial',
+            'Ruby Tutorial',
+            'C Tutorial',
+            'jQuery Tutorial',
+            'Angular + NestJS',
+            'Data Science with Python',
+            'Machine Learning',
         ];
 
         for ($i = 0; $i < sizeof($name); $i++) {

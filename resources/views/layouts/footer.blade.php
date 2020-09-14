@@ -1,7 +1,7 @@
 <div class="footer container-fluid d-flex justify-content-center flex-wrap no-gutters p-md-4 mt-0">
     <div class="text-footer col-xl-5 col-md-4 d-flex justify-content-xl-center flex-column align-items-xl-center col-6">
         <div class="img-footer">
-            <img class="d-flex mx-xl-auto m-md-0" src="images/HapoLearnLogoFooter.png" alt="">
+            <img class="d-flex mx-xl-auto m-md-0" src="/images/HapoLearnLogoFooter.png" alt="">
         </div>
         <p class="mt-md-2">Interactive lessons, "on-the-go"<br>
         practice, peer support.</p>
@@ -53,7 +53,7 @@
     <p class="m-0">© 2020 HapoLearn, Inc. All rights reserved.</p>
 </div>
 <div class="toggle-chat position-fixed float-right">
-    <div class="btn-chat"><img alt="" src="images/messenger.png"></div>
+    <div class="btn-chat"><img alt="" src="/images/messenger.png"></div>
     <div class="chat-content position-fixed pt-3">
         <div class="d-flex justify-content-between">
             <div class="ml-2 pl-5">
@@ -64,14 +64,14 @@
             </div>
         </div>
         <div class="hapo-chatbot d-flex justify-content-around align-items-center justify-content-center ml-2 mr-3">
-            <img class="mr-2" alt="" src="images/icon-chat.png">
+            <img class="mr-2" alt="" src="/images/icon-chat.png">
             <p class="pl-3 pr-4 py-2 mr-5">HapoLearn xin chào bạn. <br>
             Bạn có cần chúng tôi hỗ trợ gì không?</p>
         </div>
         <div class="login mt-2">
             <div>
                 <a class="btn py-2" href="https://m.me/haposoft" target="_blank">
-                    <img alt="" src="images/icon-messenger.png"> &nbsp; Đăng nhập vào Messenger</a>
+                    <img alt="" src="/images/icon-messenger.png"> &nbsp; Đăng nhập vào Messenger</a>
             </div>
             <div class="py-2 mb-2">
                 Chat với HapoLearn trong Messenger
