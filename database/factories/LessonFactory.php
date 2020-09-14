@@ -8,9 +8,9 @@ use Faker\Generator as Faker;
 $factory->define(Lesson::class, function (Faker $faker) {
     return [
         'name' => $faker->text(30),
-        'description' => $faker->text(100),
-        'requirement' => $faker->text(100),
-        'time' => rand(50, 100),
+        'description' => $faker->text(500),
+        'requirement' => $faker->text(500),
+        'time' => rand(1, 12),
         'course_id' => '1',
     ];
 });
