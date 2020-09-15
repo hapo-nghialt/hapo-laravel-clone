@@ -17,7 +17,6 @@ class LessonController extends Controller
 
     public function takeLesson($courseId, $lessonId)
     {
-        $course = Course::find($courseId);
         $lesson = Lesson::findOrFail($lessonId);
         $lesson->users()->attach(Auth::user()->id, ['course_id' => $courseId]);
         return view('user.lesson-detail', compact('lesson'));
