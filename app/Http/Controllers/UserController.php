@@ -14,13 +14,13 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $courses = $user;
-        return view("user.profile-user", compact("user", "courses"));
+        return view('user.profile-user', compact('user', 'courses'));
     }
 
     public function update(ProfileRequest $request)
     {
-        $user_id = Auth::user()->id;
-        User::findOrFail($user_id)->update($request->all());
+        $userId = Auth::user()->id;
+        User::findOrFail($userId)->update($request->all());
         return redirect()->route('user.show')->with('message', trans('message.update_success'));
     }
 
@@ -29,8 +29,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($request->hasFile('avatar')) {
             $avatar = $id . "_" . $request->avatar->getClientOriginalName();
-            $old_avatar = $user->avatar;
-            Storage::delete(config('variable.storage') . $old_avatar);
+            $oldAvatar = $user->avatar;
+            Storage::delete(config('variable.storage') . $oldAvatar);
             $request->file('avatar')->storeAs(config('variable.storage'), $avatar);
         }
         $user->update(['avatar' => $avatar]);
