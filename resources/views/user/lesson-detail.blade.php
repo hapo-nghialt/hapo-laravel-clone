@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="header-course-detail container-fluid py-3">
-    <span class="pl-4"><a href="{{ route('home') }}">Home</a> > <a href="{{ route('course') }}">All courses</a> > <a href="{{ route('course.detail', $lesson->course_id) }}">Course detail</a> > <a href="">Lesson detail</a></span>
+    <span class="pl-4"><a href="{{ route('home') }}">Home</a> > <a href="{{ route('course') }}">All courses</a> > <a href="{{ route('course.detail', $lesson->course_id) }}">Course detail</a> > <a href="{{ route('lesson.detail', $lesson->id) }}">Lesson detail</a></span>
 </div>
 <div class="container">
     <div class="row">

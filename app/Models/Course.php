@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Lesson;
 use App\Models\Review;
 use App\Models\Tag;
+use App\Models\CourseUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,11 @@ class Course extends Model
     public function userCourse()
     {
         return $this->hasMany(CourseUser::class);
+    }
+
+    public function lessonLearned()
+    {
+        return $this->userCourse()->where('lesson_id', '=', '0')->distinct('lesson_id');
     }
 
     public function getCourseUserAttribute()

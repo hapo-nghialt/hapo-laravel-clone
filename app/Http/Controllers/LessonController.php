@@ -15,10 +15,11 @@ class LessonController extends Controller
         return view('user.lesson-detail', compact('lesson'));
     }
 
-    public function takeLesson($id)
+    public function takeLesson($course_id, $lesson_id)
     {
-        $lesson = Lesson::findOrFail($id);
-        $lesson->users()->attach(Auth::user()->id);
-        return redirect()->route('lesson.detail', $id);
+        $course = Course::find($course_id);
+        $lesson = Lesson::findOrFail($lesson_id);
+        $lesson->users()->attach(Auth::user()->id, ['course_id' => $course_id]);
+        return view('user.lesson-detail', compact('lesson'));
     }
 }

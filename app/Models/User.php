@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Lesson;
+use App\Models\CourseUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name', 'email', 'password', 'address', 'role', 'date_of_birth', 'introduce', 'phone', 'avatar',
     ];
 
     /**
@@ -59,6 +60,16 @@ class User extends Authenticatable
 
     public function lessons()
     {
-        return $this->belongsToMany(Lesson::class, 'course_user');
+        return $this->belongsToMany(Lesson::class, 'course_user', 'user_id', 'lesson_id');
+    }
+
+    public function userCourse()
+    {
+        return $this->hasMany(CourseUser::class);
+    }
+
+    public function lessonLearned()
+    {
+        return $this->courses()->wherePivot('lesson_id', null)->get();
     }
 }

@@ -25,7 +25,7 @@ class UpdateLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('lessons', function (Blueprint $table) {
             $table->dropColumn(['time']);
         });
     }
