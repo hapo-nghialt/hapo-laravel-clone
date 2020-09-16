@@ -48,15 +48,15 @@
                             </div>
                         </div>
                         <div class="ml-4 pb-3">
-                            @foreach ($lessons as $key => $item)
+                            @foreach ($lessons as $key => $lesson)
                             <hr>
                             <div class="lesson-list d-flex justify-content-between align-items-center pr-3">
-                                {{ ++$key }} . {{ $item->name }}
+                                {{ ++$key }} . {{ $lesson->name }}
                                 @if($courseDetail->check_user)
-                                    @if ($item->check_user_learn)
-                                        <a href="{{ route('lesson.detail', $item->id) }}"><button class="btn btn-learned px-4">Learned</button></a>
+                                    @if ($lesson->check_user_learn)
+                                        <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learned px-4">Learned</button></a>
                                     @else
-                                        <form action="{{ route('take.lesson', $item->id) }}" method="post">
+                                        <form action="{{ route('take.lesson', [$courseDetail->id, $lesson->id]) }}" method="post">
                                             @csrf
                                             <button class="btn btn-learn px-4 mr-2">Learn</button>
                                         </form>
@@ -256,11 +256,11 @@
                                 <input type="hidden" id="username" value="{{ Auth::user()->name }}">
                                 <input type="hidden" name="rating_value" class="rating_value">
                                 <input type="hidden" name="course_id" value="{{ $courseDetail->id }}">
-                                <textarea name="content" id="content" cols="30" rows="5" class="form-control mb-3"></textarea>
+                                <textarea name="content" id="content" cols="30" rows="5" class="form-control mb-3" required></textarea>
                                 <div class="vote-star-review d-flex align-items-center">
                                     <div class="add-review">Vote</div>
                                     <div class="rating pt-2 px-3">
-                                        <input class="rate" type="radio" name="rate" id="star10" value="5"><label for="star10">5 stars</label>
+                                        <input class="rate" type="radio" name="rate" id="star10" value="5" required><label for="star10">5 stars</label>
                                         <input class="rate" type="radio" name="rate" id="star9" value="4.5"><label for="star9" class="half"></label>
                                         <input class="rate" type="radio" name="rate" id="star8" value="4"><label for="star8">4 stars</label>
                                         <input class="rate" type="radio" name="rate" id="star7" value="3.5"><label for="star7" class="half"></label>

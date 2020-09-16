@@ -539,7 +539,129 @@ main {
   }
 }
 
+.hapo-profile-user {
+  .avatar-user {
+    img {
+      width: 260px;
+      height: 260px;
+      border: 5px solid #FFFFFF;
+    }
 
+    .btn-image {
+      color: $main_font_color;
+      font-size: 30px;
+      margin-top: -65px;
+    }
+  }
+
+  .profile-user {
+    .user-name {
+      @include UTM(bold, 25px, 31px, $gray, -0.02em);
+    }
+
+    .user-email {
+      @include UTM(normal, 18px, 22px, $gray, -0.02em);
+    }
+  }
+
+  .infomation-user-profile {
+    .fa-birthday-cake {
+      color: #F26525;
+    }
+
+    .fa-phone {
+      color: #B2D235;
+    }
+
+    .fa-home {
+      color: #662E93;
+    }
+    @include UTM(normal, 18px, 22px, $gray, -0.02em);
+    
+    .introduce-user {
+      @include UTM(normal, 18px, 26px, #787B7B, -0.02em);
+    }
+  }
+
+  .hapo-edit-profile {
+    .title {
+      border-bottom: 5px double $main_color;
+      -webkit-text-stroke-width: 1px;
+      @include UTM(bold, 38px, 47px, $gray, -0.02em);
+    }
+  }
+}
+
+.list-courses-learned {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  a {
+    img {
+      width: 65px;
+      height: 65px;
+    }
+
+    text-decoration: none;
+    @include UTM(bold, 14px, 17px, $gray, -0.02em);
+
+    &:hover {
+      color: $main_color;
+    }
+  }
+}
+
+.add-new-course {
+  a {
+    .icon-add-course {
+      background-color: $main_font_color;
+      width: 65px;
+      height: 65px;
+      border: 1.5px solid $main_color;
+      box-sizing: border-box;
+      border-radius: 50%;
+      color: $main_color;
+      font-size: 33px;
+    }
+
+    text-decoration: none;
+    @include UTM(bold, 14px, 17px, $main_color, -0.02em);
+  }
+}
+
+.edit-profile-form {
+  label {
+    @include UTM(bold, 20px, 25px, $gray, -0.02em);
+  }
+}
+
+.btn-edit-profile {
+  background: $main_color;
+  box-shadow: inset 0px 1.5px 2px #6F8710;
+  border-radius: 22px;
+  @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+}
+
+.upload-avatar {
+  .btn {
+    @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+  }
+
+  .modal-title {
+    @include UTM(bold, 20px, 25px, $gray, -0.05em);
+  }
+
+  .modal-body {
+    @include UTM(bold, 18px, 22px, $gray, -0.05em);
+  }
+}
+
+.alert {
+  @include UTM(normal, 18px, 22px, #000000, -0.05em);
+}
 
 .banner {
   background: url('../images/HapoLearnBanner.png') no-repeat;
