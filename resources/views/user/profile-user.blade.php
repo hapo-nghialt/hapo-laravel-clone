@@ -7,8 +7,12 @@
     <div class="row">
         <div class="col-3">
             <div class="avatar-user d-flex flex-column justify-content-center mt-5">
-                <img src="{{ asset('storage/users/' . $user->avatar) }}" class="rounded-circle" alt="">
-                <a data-toggle="modal" data-target="#uploadAvatar" class="btn btn-image position-relative"><i class="fas fa-camera"></i></a>
+                @if ($user->avatar == null)
+                    <img src="{{ asset('storage/users/default.png') }}" class="rounded-circle" alt="">
+                @else                    
+                    <img src="{{ asset('storage/users/' . $user->avatar) }}" class="rounded-circle" alt="">
+                @endif
+                    <a data-toggle="modal" data-target="#uploadAvatar" class="btn btn-image position-relative"><i class="fas fa-camera"></i></a>
                 @if ($errors->has('avatar'))
                     <div class="alert alert-danger mt-4">
                         {{ $errors->first('avatar') }}
@@ -99,6 +103,11 @@
                             <div class="form-group">
                                 <label class="form-label">Date of birthday:</label>
                                 <input type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', $user->date_of_birth) }}">
+                                @if ($errors->has('date_of_birth'))
+                                    <div class="alert alert-danger mt-4">
+                                        {{ $errors->first('date_of_birth') }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Address:</label>

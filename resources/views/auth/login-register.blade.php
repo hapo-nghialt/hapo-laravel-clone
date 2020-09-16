@@ -16,6 +16,7 @@
                 <div class="tab-pane fade in show active p-3" id="login" role="tabpanel">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <input type="text" name="id" hidden id="loginDefault" value="{{ old('id') }}">
                         <div class="modal-body mb-1 tab-pane">
                             <div class="md-form mb-4">
                                 <label class="form-label" for="email-login">Username:</label>
@@ -62,6 +63,7 @@
                 <div class="tab-pane fade p-3" id="register" role="tabpanel">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <input type="hidden" name="id" id="registerDefault" value="{{ old('id') }}">
                         <div class="modal-body mb-1 tab-pane">
                             <div class="md-form form-sm mb-4">
                                 <label class="form-label" for="name">Username:</label>

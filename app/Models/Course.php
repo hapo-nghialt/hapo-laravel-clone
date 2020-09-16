@@ -16,7 +16,7 @@ class Course extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'image', 'description', 'time', 'price', 'quizze', 'teacher_id',
+        'name', 'image', 'description', 'price', 'quizze', 'teacher_id',
     ];
 
     public function lessons()
@@ -105,5 +105,75 @@ class Course extends Model
             $percent = 0;
         }
         return $percent;
+    }
+
+    public function scopeFilter($query, $data)
+    {
+        $result = null;
+
+        if ($data['course_search']) {
+            $query->where('name', 'like', '%' . $data['course_search'] . '%')
+                ->orWhere('description', 'like', '%' . $data['course_search'] . '%');
+        }
+
+        if ($data['teacher']) {
+            $query->where('teacher_id', $data['teacher']);
+        }
+
+        if ($data['learner']) {
+            if ($data['learner'] == 'desc') {
+                $query->withCount(['users' => function ($subquery) {
+                    $subquery->where('lesson_id', null);
+                }])->orderByDesc('users_count');
+            } else {
+                $query->withCount(['users' => function ($subquery) {
+                    $subquery->where('lesson_id', null);
+                }])->orderBy('users_count');
+            }
+        }
+
+        if ($data['time']) {
+            if ($data['time'] == 'desc') {
+                $query->addSelect(['time' => Lesson::selectRaw('sum(time) as total')
+                    ->whereColumn('course_id', 'courses.id')
+                    ->groupBy('course_id')
+                ])->orderByDesc('time');
+            } else {
+                $query->addSelect(['time' => Lesson::selectRaw('sum(time) as total')
+                    ->whereColumn('course_id', 'courses.id')
+                    ->groupBy('course_id')
+                ])->orderBy('time');
+            }
+        }
+
+        if ($data['lesson']) {
+            if ($data['lesson'] == 'desc') {
+                $query->withCount('lessons')->orderByDesc('lessons_count');
+            } else {
+                $query->withCount('lessons')->orderBy('lessons_count');
+            }
+        }
+
+        if ($data['review']) {
+            if ($data['review'] == 'desc') {
+                $query->addSelect(['rate' => Review::selectRaw('sum(rate) as total')
+                    ->where('type', 0)->whereColumn('target_id', 'courses.id')
+                    ->groupBy('target_id')
+                ])->orderByDesc('rate');
+            } else {
+                $query->addSelect(['rate' => Review::selectRaw('sum(rate) as total')
+                    ->where('type', 0)->whereColumn('target_id', 'courses.id')
+                    ->groupBy('target_id')
+                ])->orderBy('rate');
+            }
+        }
+
+        if ($data['tag']) {
+            $query->whereHas('tags', function ($subquery) use ($data) {
+                $subquery->where('tag_id', $data['tag']);
+            });
+        }
+
+        return $result;
     }
 }

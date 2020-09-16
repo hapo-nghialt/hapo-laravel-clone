@@ -51,7 +51,7 @@
                                         <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
                                     </div>
                                     <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">Luu Trung Nghia</div>
+                                        <div class="teacher-name">{{ $teacher->name }}</div>
                                         <div class="teacher-exp">Second Year Teacher</div>
                                         <div class="mt-2">
                                             <i class="logo-google fab fa-google-plus-g"></i>
@@ -62,49 +62,7 @@
                                 </div>
                             </div>
                             <div class="teacher-desc mt-3 mb-5 mr-3">
-                                Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
-                            </div>
-                        </div>
-                        <div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-2 p-0 mt-4">
-                                        <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
-                                    </div>
-                                    <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">Luu Trung Nghia</div>
-                                        <div class="teacher-exp">Second Year Teacher</div>
-                                        <div class="mt-2">
-                                            <i class="logo-google fab fa-google-plus-g"></i>
-                                            <i class="logo-facebook fab fa-facebook-f"></i>
-                                            <i class="logo-slack fab fa-slack"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="teacher-desc mt-3 mb-5 mr-3">
-                                Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
-                            </div>
-                        </div>
-                        <div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-2 p-0 mt-4">
-                                        <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
-                                    </div>
-                                    <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">Luu Trung Nghia</div>
-                                        <div class="teacher-exp">Second Year Teacher</div>
-                                        <div class="mt-2">
-                                            <i class="logo-google fab fa-google-plus-g"></i>
-                                            <i class="logo-facebook fab fa-facebook-f"></i>
-                                            <i class="logo-slack fab fa-slack"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="teacher-desc mt-3 mb-5 mr-3">
-                                Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
+                                {{ $teacher->introduce }}
                             </div>
                         </div>
                     </div>

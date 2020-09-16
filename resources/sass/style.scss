@@ -124,7 +124,8 @@ main {
     border-bottom: 1px solid #F1F1F1;
   }
 
-  .courses-title {
+  .courses-title a {
+    text-decoration: none;
     @include UTM(bold, 25px, 31px, $gray, -0.05em);
   }
 
@@ -663,6 +664,52 @@ main {
   @include UTM(normal, 18px, 22px, #000000, -0.05em);
 }
 
+.text-filter {
+  -webkit-text-stroke-width: 0.5px;
+  color: $gray;
+  @include OpenSans(bold, 16px, 22px);
+}
+
+.form-filter {
+  .form-control {
+    width: 180px;
+    color: $gray;
+    @include OpenSans(bold, 14px, 19px);
+  }
+}
+
+.filter-course {
+  background-color: $main_font_color;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.filter-status {
+  label {
+    -webkit-text-stroke-width: 0.5px;
+    background-color: #E5E6E7;
+    color: $gray;
+    border-radius: 2px; 
+    @include OpenSans(normal, 14px, 19px);
+
+    &:hover {
+      cursor: pointer;
+      color: #FFFFFF;
+      background-color: #B2D235;
+    }
+  }
+}
+    
+.filter-status > input:checked + label {
+  background-color: $main_color;
+  color: $main_font_color;
+}
+
+.btn-course-tag {
+  @include UTM(bold, 25px, 31px, #5D8BD0, -0.02em);
+}
+
 .banner {
   background: url('../images/HapoLearnBanner.png') no-repeat;
   background-size: cover;
@@ -872,6 +919,7 @@ main {
 .img-whyhapo-right {
   img {
     height: 544px;
+    margin-left: -32px;
   }
 }
 
@@ -934,8 +982,14 @@ main {
     border: 0.5px solid #E2E2E2;
     box-shadow: 1px 1px 5px 0.5px #969694;
     border-radius: 10px;
+    height: 150px;
 
     p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
       border-left: 5px solid #D9DADC;
       @include UTM(normal, 16px, 20px, #000000, -0.05em)
     }
