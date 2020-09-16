@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -30,7 +31,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->username() => 'required|string',
+            $this->username() => 'required|string|email',
             'login_password' => 'required|string',
         ]);
     }
@@ -41,6 +42,40 @@ class LoginController extends Controller
             ['email' => $request->login_email, 'password' => $request->login_password],
             $request->filled('remember')
         );
+    }
+
+    public function attemptLoginAdmin(Request $request)
+    {
+        $user = User::where('email', '=', $request->login_email)->first();
+        if ($user) {
+            $role = $user->role;
+            $check = $this->attemptLogin($request) && ($role == 0 || $role == 1);
+            return $check;
+        } else {
+            return false;
+        }
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if (method_exists($this, 'hasTooManyLoginAttempts') && $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            if ($request->id) {
+                return redirect()->route('course.detail', $request->id);
+            } else {
+                return redirect()->route('home');
+            }
+        }
+
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
     }
 
     /**

@@ -34,16 +34,19 @@
                                 </form>
                             </div>
                             <div class="col-4 my-4 px-4">
-                                @if ($courseDetail->check_user)
+                                @if (Auth::check() && $courseDetail->check_user)
                                     <form action="{{ route('leave.course', $courseDetail->id) }}" method="post">
                                         @csrf
                                         <button class="btn btn-join-courses px-4">Kết thúc khóa học</button>
                                     </form>
-                                @else
+                                @elseif (Auth::check())
                                     <form action="{{ route('take.course', $courseDetail->id) }}" method="post">
                                         @csrf
                                         <button class="btn btn-join-courses px-4">Tham gia khóa học</button>
                                     </form>
+                                @else
+                                    <a data-target="#myModal" data-toggle="modal" class="btn btn-join-courses px-4">Tham gia khóa học</a>
+                                    <input type="text" hidden name="id" value="{{ $courseDetail->id }}">
                                 @endif
                             </div>
                         </div>
@@ -79,7 +82,7 @@
                                         <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
                                     </div>
                                     <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">Luu Trung Nghia</div>
+                                        <div class="teacher-name">{{ $teacher->name }}</div>
                                         <div class="teacher-exp">Second Year Teacher</div>
                                         <div class="mt-2">
                                             <i class="logo-google fab fa-google-plus-g"></i>
@@ -90,49 +93,7 @@
                                 </div>
                             </div>
                             <div class="teacher-desc mt-3 mb-5 mr-3">
-                                Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
-                            </div>
-                        </div>
-                        <div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-2 p-0 mt-4">
-                                        <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
-                                    </div>
-                                    <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">Luu Trung Nghia</div>
-                                        <div class="teacher-exp">Second Year Teacher</div>
-                                        <div class="mt-2">
-                                            <i class="logo-google fab fa-google-plus-g"></i>
-                                            <i class="logo-facebook fab fa-facebook-f"></i>
-                                            <i class="logo-slack fab fa-slack"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="teacher-desc mt-3 mb-5 mr-3">
-                                Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
-                            </div>
-                        </div>
-                        <div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-2 p-0 mt-4">
-                                        <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
-                                    </div>
-                                    <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">Luu Trung Nghia</div>
-                                        <div class="teacher-exp">Second Year Teacher</div>
-                                        <div class="mt-2">
-                                            <i class="logo-google fab fa-google-plus-g"></i>
-                                            <i class="logo-facebook fab fa-facebook-f"></i>
-                                            <i class="logo-slack fab fa-slack"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="teacher-desc mt-3 mb-5 mr-3">
-                                Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique 
+                                {{ $teacher->introduce }}
                             </div>
                         </div>
                     </div>
@@ -212,7 +173,11 @@
                                 <div class="hapo-review container" id="list-review">
                                     <div class="hapo-review-user">
                                         <div class="d-flex align-items-center">
-                                            <img src="/images/kitten-asleep.png" alt="" class="rounded-circle">
+                                            @if ($review->user->avatar == null)
+                                            <img src="{{ asset('storage/users/default.png') }}" alt="" class="rounded-circle">
+                                            @else
+                                            <img src="{{ asset('storage/users/' . $review->user->avatar) }}" alt="" class="rounded-circle">
+                                            @endif
                                             <div class="review-username mx-3">{{ $review->user->name }}</div>
                                             <div class="mr-5">
                                                 @for ($i = 1; $i <= $rate['five_star']; $i++)
@@ -232,7 +197,7 @@
                                         <div class="col-11 d-flex align-items-center review-content-{{ $review->id }}">
                                             {{ $review->content }}
                                         </div>
-                                        @if ($review->user->id == Auth::user()->id)
+                                        @if (Auth::check() && $review->user->id == Auth::user()->id)
                                             <div class="col-1">
                                                 <button title="Edit message" class="btn edit-modal" data-target="#edit-review-modal" data-toggle="modal" data-content="{{ $review->content }}" data-rate="{{ $review->rate }}" data-url="{{ route('review.update', $review->id) }}">
                                                     <i class="far fa-edit"></i>
@@ -253,7 +218,6 @@
                             <form method="POST" action="{{ route('review.course.store') }}">
                                 @csrf
                                 <div class="message-add-review my-3">Message</div>
-                                <input type="hidden" id="username" value="{{ Auth::user()->name }}">
                                 <input type="hidden" name="rating_value" class="rating_value">
                                 <input type="hidden" name="course_id" value="{{ $courseDetail->id }}">
                                 <textarea name="content" id="content" cols="30" rows="5" class="form-control mb-3" required></textarea>
@@ -274,7 +238,12 @@
                                     <div class="message-add-review">(stars)</div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-learn px-4 my-4">Send</button>
+                                    @if (Auth::check())
+                                        <button type="submit" class="btn btn-learn px-4 my-4">Send</button>
+                                    @else
+                                        <a data-target="#myModal" data-toggle="modal" class="btn btn-learn px-4 my-4">Send</a>
+                                        <input type="text" hidden name="id" value="{{ $courseDetail->id }}">
+                                    @endif
                                 </div>
                             </form>
                         </div>
@@ -305,8 +274,11 @@
                     <i class="fa fa-clock"></i> Time: {{ $courseDetail->time_lesson }} hours
                 </div>
                 <hr>
-                <div class="element py-3">
-                    <i class="fa fa-key"></i> Tags: #learn, #code
+                <div class="element py-3 d-flex align-items-center">
+                    <i class="fa fa-key"></i>&nbsp;Tags:
+                        @foreach ($courseDetail->tags as $tag)
+                            <a href="" class="btn btn-course-tag p-0">&nbsp;#{{ $tag->name }},</a>
+                        @endforeach
                 </div>
                 <hr>
                 <div class="element py-3">

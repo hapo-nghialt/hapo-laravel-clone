@@ -18,7 +18,7 @@
     <div class="blank-banner"></div>
     <section class="main-courses container">
         <div class="row main-courses-content">
-            @foreach ($maincourses as $item)
+            @foreach ($mainCourses as $item)
                 <div class="main-courses-detail col-xl-4 col-md-4 col-9 px-xl-3 p-md-2 mb-3">
                     <div class="img-courses left-element d-flex justify-content-center align-items-center">
                         <img class="img-main-courses m-xl-5 m-md-4" src="images/logoHTML.png" alt="">
@@ -26,7 +26,7 @@
                     <div class="text-courses py-xl-3 py-md-2 mb-5 px-3 d-flex flex-column justify-content-center align-items-center">
                         <b>{{ $item->name }}</b>
                         <p class="m-xl-3 mt-md-1">{{ $item->description }}</p>
-                        <a href="" class="btn mb-xl-2 mb-md-3">Take This Course</a>
+                        <a href="{{ route('course.detail', $item->id) }}" class="btn mb-xl-2 mb-md-3">Take This Course</a>
                     </div>
                 </div>
             @endforeach
@@ -37,7 +37,7 @@
             <span class="underline">Other courses</span>
         </div>
         <div class="row other-courses-content mt-5">
-            @foreach ($othercourses as $item)
+            @foreach ($otherCourses as $item)
                 <div class="other-courses-detail col-xl-4 col-md-4 col-9 px-xl-3 p-md-2">
                     <div class="img-courses left-element d-flex justify-content-center align-items-center">
                         <img class="img-other-courses" src="images/CSS.png" alt="">
@@ -45,13 +45,13 @@
                     <div class="text-other-courses mb-5 px-3 py-xl-2 py-md-1 d-flex flex-column justify-content-center align-items-center">
                         <b class="my-xl-2 my-md-2">{{ $item->name }}</b>
                         <p class="m-xl-3 mb-md-3">{{ $item->description }}</p>
-                        <a href="" class="btn mt-xl-1 mb-xl-3 mb-md-3">Take This Course</a>
+                        <a href="{{ route('course.detail', $item->id) }}" class="btn mt-xl-1 mb-xl-3 mb-md-3">Take This Course</a>
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="text-allcourses mt-5 pb-5">
-            <a href="#">View All Our Courses <img alt="" src="images/arrow.png"></a>
+            <a href="{{ route('course') }}">View All Our Courses <img alt="" src="images/arrow.png"></a>
         </div>
     </section>
     <section class="whyhapo container-fluid mt-5">
@@ -91,62 +91,35 @@
             after learning with us and reaching their goals
         </div>
         <div class="comment">
+            @foreach ($reviews as $review)
             <div class="feedback-detail">
                 <div class="feedback-content mb-4">
                     <div class="comment-content">
-                        <p class="pl-3 py-3">“A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</p>
+                        <p class="px-3 pt-3 ml-2">{{ $review->content }}</p>
                     </div>
                 </div>
                 <div class="user ml-xl-3 pl-3 d-inline-flex flex-row">
-                    <img alt="" src="images/kitten-asleep.png">
+                    @if ($review->user->avatar == null)
+                    <img src="{{ asset('storage/users/default.png') }}" class="rounded-circle" alt="">
+                    @else
+                    <img alt="" src="{{ asset('storage/users/' . $review->user->avatar) }}" class="rounded-circle">
+                    @endif
                     <div class="user-information ml-3">
-                        <b>Hoang Anh Nguyen</b>
-                        <p class="m-0 p-0">PHP</p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                        <b>{{ $review->user->name }}</b>
+                        <p class="m-0 p-0">PHP</p>
+                        @for ($i = 1; $i <= $rate['five_star']; $i++)
+                            @if ($i <= floor($review->rate))
+                                <i class="fas fa-star"></i>
+                            @elseif ($i > $review->rate)
+                                <i class="fas fa-star-half-alt"></i>
+                            @else
+                                <i class="far fa-star"></i>
+                            @endif
+                        @endfor
                     </div>
                 </div>
             </div>
-            <div class="feedback-detail">
-                <div class="feedback-content mb-4">
-                    <div class="comment-content">
-                        <p class="pl-3 py-3">“A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</p>
-                    </div>
-                </div>
-                <div class="user ml-xl-3 pl-3 d-inline-flex flex-row">
-                    <img alt="" src="images/kitten-asleep.png">
-                    <div class="user-information ml-3">
-                        <b>Tuan Tran Hoang</b>
-                        <p class="m-0 p-0">Python</p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-detail">
-                <div class="feedback-content mb-4">
-                    <div class="comment-content">
-                        <p class="pl-3 py-3">“A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</p>
-                    </div>
-                </div>
-                <div class="user ml-xl-3 pl-3 d-inline-flex flex-row">
-                    <img alt="" src="images/kitten-asleep.png">
-                    <div class="user-information ml-3">
-                        <b>Viet Hoang Tran</b>
-                        <p class="m-0 p-0">Java</p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-detail">
-                <div class="feedback-content mb-4">
-                    <div class="comment-content">
-                        <p class="pl-3 py-3">“A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</p>
-                    </div>
-                </div>
-                <div class="user ml-xl-3 pl-3 d-inline-flex flex-row">
-                    <img alt="" src="images/kitten-asleep.png">
-                    <div class="user-information ml-3">
-                        <b>Trong Nghia Le</b>
-                        <p class="m-0 p-0">Laravel</p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <section class="hapo-member container-fluid">
@@ -155,7 +128,7 @@
             growing community!
         </div>
         <div class="btn-member d-flex justify-content-center">
-            <a href="" class="btn pt-xl-3 pb-xl-3 pb-md-2 mt-4">Start Learning Now!</a>
+            <a href="{{ route('course') }}" class="btn pt-xl-3 pb-xl-3 pb-md-2 mt-4">Start Learning Now!</a>
         </div>
     </section>
     <section class="statistic container-fluid mt-5">
@@ -164,13 +137,13 @@
         </div>
         <div class="row mt-5 hapo-statistic">
             <div class="statistic-content col-xl-4 col-md-4 col-12 mb-5">
-                <p>Courses</p><b>1,586</b>
+                <p>Courses</p><b>{{ $coursesNumber }}</b>
             </div>
             <div class="statistic-content col-xl-4 col-md-4 col-12 mb-5">
-                <p>Lessons</p><b>2,689</b>
+                <p>Lessons</p><b>{{ $lessonsNumber }}</b>
             </div>
             <div class="statistic-content col-xl-4 col-md-4 col-12 mb-5">
-                <p>Learners</p><b>16,882</b>
+                <p>Learners</p><b>{{ $learnerNumber }}</b>
             </div>
         </div>
     </section>

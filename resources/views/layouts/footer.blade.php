@@ -9,13 +9,13 @@
     <div class="col-xl-1 col-md-2 col-6">
         <ul class="menu-footer navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="{{ route('home') }}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Courses</a>
+                <a class="nav-link" href="{{ route('course') }}">Courses</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Blog</a>
