@@ -31,4 +31,9 @@ class Review extends Model
             return $this->belongsTo(Lesson::class, 'target_id');
         }
     }
+    
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

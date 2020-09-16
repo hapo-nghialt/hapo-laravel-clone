@@ -61,6 +61,21 @@ $(document).ready(function() {
 
     $("[data-toggle='tooltip']").tooltip();
 
+    $(".btn-learn, .btn-join-courses").click(function() {
+        $("#loginDefault, #registerDefault").val(
+            $(this).next()
+                .val()
+        );
+    });
+
+    $('.btn-filter').click(function() {
+        $(".filter-course").fadeToggle();
+    });
+
+    $('.filter-newest').click(function() {
+        $('.filter-newest').addClass('acti');
+    });
+    
     var fiveStar = document.getElementById("five-star").value;
     var fourStar = document.getElementById("four-star").value;
     var threeStar = document.getElementById("three-star").value;

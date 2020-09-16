@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseTag extends Model
 {
-    protected $fillable = ['course_id', 'tag_id'];
+    protected $fillable = [
+        'course_id', 'tag_id'
+    ];
+
+    protected $table = "course_tag";
 }
