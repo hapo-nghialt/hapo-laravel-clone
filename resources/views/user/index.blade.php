@@ -18,15 +18,15 @@
     <div class="blank-banner"></div>
     <section class="main-courses container">
         <div class="row main-courses-content">
-            @foreach ($mainCourses as $item)
+            @foreach ($mainCourses as $course)
                 <div class="main-courses-detail col-xl-4 col-md-4 col-9 px-xl-3 p-md-2 mb-3">
                     <div class="img-courses left-element d-flex justify-content-center align-items-center">
                         <img class="img-main-courses m-xl-5 m-md-4" src="images/logoHTML.png" alt="">
                     </div>
                     <div class="text-courses py-xl-3 py-md-2 mb-5 px-3 d-flex flex-column justify-content-center align-items-center">
-                        <b>{{ $item->name }}</b>
-                        <p class="m-xl-3 mt-md-1">{{ $item->description }}</p>
-                        <a href="{{ route('course.detail', $item->id) }}" class="btn mb-xl-2 mb-md-3">Take This Course</a>
+                        <b>{{ $course->name }}</b>
+                        <p class="m-xl-3 mt-md-1">{{ $course->description }}</p>
+                        <a href="{{ route('course.detail', $course->id) }}" class="btn mb-xl-2 mb-md-3">Take This Course</a>
                     </div>
                 </div>
             @endforeach
@@ -37,15 +37,15 @@
             <span class="underline">Other courses</span>
         </div>
         <div class="row other-courses-content mt-5">
-            @foreach ($otherCourses as $item)
+            @foreach ($otherCourses as $course)
                 <div class="other-courses-detail col-xl-4 col-md-4 col-9 px-xl-3 p-md-2">
                     <div class="img-courses left-element d-flex justify-content-center align-items-center">
                         <img class="img-other-courses" src="images/CSS.png" alt="">
                     </div>
                     <div class="text-other-courses mb-5 px-3 py-xl-2 py-md-1 d-flex flex-column justify-content-center align-items-center">
-                        <b class="my-xl-2 my-md-2">{{ $item->name }}</b>
-                        <p class="m-xl-3 mb-md-3">{{ $item->description }}</p>
-                        <a href="{{ route('course.detail', $item->id) }}" class="btn mt-xl-1 mb-xl-3 mb-md-3">Take This Course</a>
+                        <b class="my-xl-2 my-md-2">{{ $course->name }}</b>
+                        <p class="m-xl-3 mb-md-3">{{ $course->description }}</p>
+                        <a href="{{ route('course.detail', $course->id) }}" class="btn mt-xl-1 mb-xl-3 mb-md-3">Take This Course</a>
                     </div>
                 </div>
             @endforeach
@@ -137,13 +137,13 @@
         </div>
         <div class="row mt-5 hapo-statistic">
             <div class="statistic-content col-xl-4 col-md-4 col-12 mb-5">
-                <p>Courses</p><b>{{ $coursesNumber }}</b>
+                <p>Courses</p><b>{{ $courses->count() }}</b>
             </div>
             <div class="statistic-content col-xl-4 col-md-4 col-12 mb-5">
-                <p>Lessons</p><b>{{ $lessonsNumber }}</b>
+                <p>Lessons</p><b>{{ $lessons->count() }}</b>
             </div>
             <div class="statistic-content col-xl-4 col-md-4 col-12 mb-5">
-                <p>Learners</p><b>{{ $learnerNumber }}</b>
+                <p>Learners</p><b>{{ $learners->count() }}</b>
             </div>
         </div>
     </section>
