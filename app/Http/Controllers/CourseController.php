@@ -25,8 +25,9 @@ class CourseController extends Controller
         $data = $request->all();
         if (isset($data['course_search'])) {
             $keyword = $data['course_search'];
+        } else {
+            $keyword = '';
         }
-        else $keyword = '';
         $courses = Course::query()->filter($data)->paginate(config('variable.pagination'));
         return view('user.all-courses', compact('courses', 'teachers', 'keyword', 'tags'));
     }
