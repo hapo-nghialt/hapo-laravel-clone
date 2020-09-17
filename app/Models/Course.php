@@ -59,6 +59,12 @@ class Course extends Model
         return $this->userCourse()->distinct('user_id')->count();
     }
 
+    public function getCheckTeacherAttribute($id)
+    {
+        $check = $this->users()->where('role', 1)->exists();
+        return $check;
+    }
+
     public function getCheckUserAttribute()
     {
         $check = [];
@@ -68,11 +74,13 @@ class Course extends Model
         return count($check);
     }
 
-    public function getOtherCourses()
+    public function getOtherCourseAttribute()
     {
-        return $this->where('id', '!=', $this->id)
-            ->take(config('variable.other-courses'))
-            ->get();
+        return $this->withCount(['users' => function ($que) {
+                $que->where('lesson_id', null);
+        }])->orderByDesc('users_count')
+        ->take(config('variable.other-courses'))
+        ->get();
     }
 
     public function reviews()
@@ -111,16 +119,24 @@ class Course extends Model
     {
         $result = null;
 
-        if ($data['course_search']) {
+        if (isset($data['course_search'])) {
             $query->where('name', 'like', '%' . $data['course_search'] . '%')
                 ->orWhere('description', 'like', '%' . $data['course_search'] . '%');
         }
 
-        if ($data['teacher']) {
+        if (isset($data['teacher'])) {
             $query->where('teacher_id', $data['teacher']);
         }
 
-        if ($data['learner']) {
+        if (isset($data['status'])) {
+            if ($data['status'] == 'newest') {
+                $query->orderByDesc('id');
+            } else {
+                $query->orderBy('id');
+            }
+        }
+
+        if (isset($data['learner'])) {
             if ($data['learner'] == 'desc') {
                 $query->withCount(['users' => function ($subquery) {
                     $subquery->where('lesson_id', null);
@@ -132,7 +148,7 @@ class Course extends Model
             }
         }
 
-        if ($data['time']) {
+        if (isset($data['time'])) {
             if ($data['time'] == 'desc') {
                 $query->addSelect(['time' => Lesson::selectRaw('sum(time) as total')
                     ->whereColumn('course_id', 'courses.id')
@@ -146,7 +162,7 @@ class Course extends Model
             }
         }
 
-        if ($data['lesson']) {
+        if (isset($data['lesson'])) {
             if ($data['lesson'] == 'desc') {
                 $query->withCount('lessons')->orderByDesc('lessons_count');
             } else {
@@ -154,7 +170,7 @@ class Course extends Model
             }
         }
 
-        if ($data['review']) {
+        if (isset($data['review'])) {
             if ($data['review'] == 'desc') {
                 $query->addSelect(['rate' => Review::selectRaw('sum(rate) as total')
                     ->where('type', 0)->whereColumn('target_id', 'courses.id')
@@ -168,7 +184,7 @@ class Course extends Model
             }
         }
 
-        if ($data['tag']) {
+        if (isset($data['tag'])) {
             $query->whereHas('tags', function ($subquery) use ($data) {
                 $subquery->where('tag_id', $data['tag']);
             });

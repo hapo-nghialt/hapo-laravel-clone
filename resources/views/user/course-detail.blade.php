@@ -10,7 +10,11 @@
     <div class="row">
         <div class="col-8">
             <div class="image-course-detail d-flex align-items-center justify-content-center my-4 py-5">
-                <img class="img-fluid w-50 py-5" src="/images/logoHTML.png" alt="">
+                @if ($courseDetail->image == null)
+                <img src="{{ asset('storage/courses/courses.png') }}" alt="" class="img-fluid w-50 my-3 rounded-circle">
+                @else
+                <img src="{{ asset('storage/courses/' . $courseDetail->image) }}" alt="" class="img-fluid w-50 my-3 rounded-circle">
+                @endif
             </div>
             <div class="content-course-detail pt-3">
                 <nav class="nav-bar-course mx-4">
@@ -79,7 +83,11 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-2 p-0 mt-4">
-                                        <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
+                                        @if ($teacher->image == null)
+                                        <img src="{{ asset('storage/users/default.png') }}" alt="" class="rounded-circle img-fluid">
+                                        @else
+                                        <img src="{{ asset('storage/users/' . $teacher->image) }}" alt="" class="rounded-circle img-fluid">
+                                        @endif
                                     </div>
                                     <div class="col-8 mt-4 d-flex flex-column justify-content-center">
                                         <div class="teacher-name">{{ $teacher->name }}</div>
@@ -241,7 +249,7 @@
                                     @if (Auth::check())
                                         <button type="submit" class="btn btn-learn px-4 my-4">Send</button>
                                     @else
-                                        <a data-target="#myModal" data-toggle="modal" class="btn btn-learn px-4 my-4">Send</a>
+                                        <a data-target="#myModal" data-toggle="modal" id="btn-send" class="btn btn-learn px-4 my-4">Send</a>
                                         <input type="text" hidden name="id" value="{{ $courseDetail->id }}">
                                     @endif
                                 </div>
@@ -274,10 +282,13 @@
                     <i class="fa fa-clock"></i> Time: {{ $courseDetail->time_lesson }} hours
                 </div>
                 <hr>
-                <div class="element py-3 d-flex align-items-center">
+                <div class="element py-3 d-flex align-items-center flex-wrap">
                     <i class="fa fa-key"></i>&nbsp;Tags:
                         @foreach ($courseDetail->tags as $tag)
-                            <a href="" class="btn btn-course-tag p-0">&nbsp;#{{ $tag->name }},</a>
+                        <form action="{{ route('course.search') }}" method="get">
+                            <input type="submit" name="tag" hidden id="tagSearch{{ $tag->id }}" value="{{ $tag->id }}">
+                            <label for="tagSearch{{ $tag->id }}" class="btn btn-course-tag py-0 px-1 my-0 mx-2">&nbsp;#{{ $tag->name }}</label>
+                        </form>
                         @endforeach
                 </div>
                 <hr>
@@ -288,7 +299,7 @@
             <div class="other-courses-element mt-4">
                 <div class="title py-3">Other Courses</div>
                 <div class="other-courses-list p-3">
-                    @foreach ($courseDetail->getOtherCourses() as $key => $courses)
+                    @foreach ($courseDetail->other_course as $key => $courses)
                         <a href="{{ route('course.detail', $courses->id) }}">
                             <div class="other-courses-item">
                                 {{ ++$key }}. {{ $courses->name }}

@@ -12,7 +12,7 @@
                 <p class="mt-md-0 mb-md-4">Interactive lessons, "on-the-go"<br>
                 practice, peer support.</p>
             </div>
-            <a href="" class="btn btn-start pt-xl-2 pb-xl-3 pb-md-2">Start Learning Now!</a>
+            <a href="{{ route('course') }}" class="btn btn-start pt-xl-2 pb-xl-3 pb-md-2">Start Learning Now!</a>
         </div>
     </section>
     <div class="blank-banner"></div>
@@ -21,7 +21,11 @@
             @foreach ($mainCourses as $course)
                 <div class="main-courses-detail col-xl-4 col-md-4 col-9 px-xl-3 p-md-2 mb-3">
                     <div class="img-courses left-element d-flex justify-content-center align-items-center">
-                        <img class="img-main-courses m-xl-5 m-md-4" src="images/logoHTML.png" alt="">
+                        @if ($course->image == null)
+                        <img src="{{ asset('storage/courses/courses.png') }}" alt="" class="img-main-courses m-xl-5 m-md-4 rounded-circle">
+                        @else
+                        <img src="{{ asset('storage/courses/' . $course->image) }}" alt="" class="img-main-courses m-xl-5 m-md-4 rounded-circle">
+                        @endif
                     </div>
                     <div class="text-courses py-xl-3 py-md-2 mb-5 px-3 d-flex flex-column justify-content-center align-items-center">
                         <b>{{ $course->name }}</b>
@@ -40,7 +44,11 @@
             @foreach ($otherCourses as $course)
                 <div class="other-courses-detail col-xl-4 col-md-4 col-9 px-xl-3 p-md-2">
                     <div class="img-courses left-element d-flex justify-content-center align-items-center">
-                        <img class="img-other-courses" src="images/CSS.png" alt="">
+                        @if ($course->image == null)
+                        <img src="{{ asset('storage/courses/courses.png') }}" alt="" class="img-other-courses rounded-circle">
+                        @else
+                        <img src="{{ asset('storage/courses/' . $course->image) }}" alt="" class="img-other-courses rounded-circle">
+                        @endif
                     </div>
                     <div class="text-other-courses mb-5 px-3 py-xl-2 py-md-1 d-flex flex-column justify-content-center align-items-center">
                         <b class="my-xl-2 my-md-2">{{ $course->name }}</b>
@@ -108,14 +116,18 @@
                         <b>{{ $review->user->name }}</b>
                         <p class="m-0 p-0">PHP</p>
                         @for ($i = 1; $i <= $rate['five_star']; $i++)
-                            @if ($i <= floor($review->rate))
+                            @if ($i <= floor($review->rate)) 
                                 <i class="fas fa-star"></i>
-                            @elseif ($i > $review->rate)
+                            @elseif ($i < $review->rate)
                                 <i class="fas fa-star-half-alt"></i>
                             @else
                                 <i class="far fa-star"></i>
                             @endif
                         @endfor
+
+                        {{-- for i = 1 to 5: if i = 1; i = 2
+                            i = 3, 4, 5
+                            rate = 2 --}}
                     </div>
                 </div>
             </div>

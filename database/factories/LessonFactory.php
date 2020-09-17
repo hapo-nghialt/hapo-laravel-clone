@@ -7,10 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Lesson::class, function (Faker $faker) {
     return [
-        'name' => $faker->text(30),
-        'description' => $faker->text(500),
-        'requirement' => $faker->text(500),
-        'time' => rand(1, 12),
-        'course_id' => '1',
+        'name' => $faker->realText($maxNbChars = 40, $indexSize = 2),
+        'description' => $faker->realText($maxNbChars = 500, $indexSize = 2),
+        'requirement' => $faker->realText($maxNbChars = 500, $indexSize = 2),
+        'time' => rand(5, 10),
+        'course_id' => 12,
     ];
 });

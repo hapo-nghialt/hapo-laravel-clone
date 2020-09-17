@@ -65,6 +65,7 @@
         </div>
         <div class="col-9 mt-5">
             <div class="hapo-edit-profile container">
+                @if ($user->getIsTeacherAttribute())
                 <div class="title">
                     My courses                    
                 </div>
@@ -72,6 +73,32 @@
                     @foreach ($courses->lessonLearned() as $course)
                     <div class="col-1 list-courses-learned p-0 text-center mx-3">
                         <a href="{{ route('course.detail', $course->id) }}"><img src="{{ asset('storage/courses/courses-HTML.png') }}" class="rounded-circle mb-2" alt="">{{ $course->name }}</a>
+                    </div>
+                    @endforeach
+                    <div class="add-new-course mx-3">
+                        <a href="{{ route('admin.courses.create') }}">
+                            <div class="icon-add-course mb-2 d-flex align-items-center justify-content-center">
+                                +
+                            </div>
+                            Add course
+                        </a>
+                    </div>
+                </div>
+                @else
+                <div class="title">
+                    My courses                    
+                </div>
+                <div class="row my-4 d-flex justify-content-center align-items-center">
+                    @foreach ($courses->lessonLearned() as $course)
+                    <div class="col-1 list-courses-learned p-0 text-center mx-3">
+                        <a href="{{ route('course.detail', $course->id) }}">
+                            @if ($course->image == null)
+                            <img src="{{ asset('storage/courses/courses.png') }}" alt="" class="rounded-circle mb-2">
+                            @else
+                            <img src="{{ asset('storage/courses/' . $course->image) }}" alt="" class="rounded-circle mb-2">
+                            @endif
+                            {{ $course->name }}
+                        </a>
                     </div>
                     @endforeach
                     <div class="add-new-course mx-3">
@@ -83,6 +110,7 @@
                         </a>
                     </div>
                 </div>
+                @endif
                 <div class="title">
                     Edit profile
                 </div>

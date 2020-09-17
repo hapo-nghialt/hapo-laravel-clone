@@ -12,32 +12,30 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        Tag::create([
-            'name' => 'HTML',
-        ]);
-        Tag::create([
-            'name' => 'HTML',
-        ]);
-        Tag::create([
-            'name' => 'CSS',
-        ]);
-        Tag::create([
-            'name' => 'js',
-        ]);
-        Tag::create([
-            'name' => 'PHP',
-        ]);
-        Tag::create([
-            'name' => 'code',
-        ]);
-        Tag::create([
-            'name' => 'learn',
-        ]);
-        Tag::create([
-            'name' => 'Angular',
-        ]);
-        Tag::create([
-            'name' => 'developer',
-        ]);
+        // Tag::create([
+        //     'name' => 'HTML',
+        // ]);
+        // Tag::create([
+        //     'name' => 'CSS',
+        // ]);
+        // Tag::create([
+        //     'name' => 'js',
+        // ]);
+        // Tag::create([
+        //     'name' => 'PHP',
+        // ]);
+        // Tag::create([
+        //     'name' => 'code',
+        // ]);
+        // Tag::create([
+        //     'name' => 'learn',
+        // ]);
+        // Tag::create([
+        //     'name' => 'Angular',
+        // ]);
+        // Tag::create([
+        //     'name' => 'developer',
+        // ]);
+        factory(Tag::class, 50)->create();
     }
 }

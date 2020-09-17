@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -44,18 +45,6 @@ class LoginController extends Controller
         );
     }
 
-    public function attemptLoginAdmin(Request $request)
-    {
-        $user = User::where('email', '=', $request->login_email)->first();
-        if ($user) {
-            $role = $user->role;
-            $check = $this->attemptLogin($request) && ($role == 0 || $role == 1);
-            return $check;
-        } else {
-            return false;
-        }
-    }
-
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -66,10 +55,16 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            if ($request->id) {
-                return redirect()->route('course.detail', $request->id);
-            } else {
-                return redirect()->route('home');
+            if (Auth::user()->role == User::ROLE['teacher']) {
+                return redirect()->route('admin.index');
+            }
+    
+            if (Auth::user()->role == User::ROLE['user']) {
+                if (($request->id)) {
+                    return redirect()->route('course.detail', $request->id);
+                } else {
+                    return redirect()->route('home');
+                }
             }
         }
 

@@ -19,8 +19,16 @@ class UserController extends Controller
 
     public function update(ProfileRequest $request)
     {
-        $userId = Auth::user()->id;
-        User::findOrFail($userId)->update($request->all());
+        $id = Auth::user()->id;
+        // User::findOrFail($id)->update($request->all());
+        $user = User::findOrFail($id);
+        $user->update([
+            'name' => $request->name,
+            'date_of_birth' => $request->date_of_birth,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'introduce' => $request->introduce,
+        ]);
         return redirect()->route('user.show')->with('message', trans('message.update_success'));
     }
 

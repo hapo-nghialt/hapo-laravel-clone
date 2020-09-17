@@ -12,41 +12,18 @@ class CourseTagTableSeeder extends Seeder
      */
     public function run()
     {
-        CourseTag::create([
-            'tag_id' => 1,
-            'course_id' => 1,
-        ]);
-        CourseTag::create([
-            'tag_id' => 3,
-            'course_id' => 1,
-        ]);
-        CourseTag::create([
-            'tag_id' => 4,
-            'course_id' => 1,
-        ]);
-        CourseTag::create([
-            'tag_id' => 1,
-            'course_id' => 2,
-        ]);
-        CourseTag::create([
-            'tag_id' => 4,
-            'course_id' => 2,
-        ]);
-        CourseTag::create([
-            'tag_id' => 5,
-            'course_id' => 2,
-        ]);
-        CourseTag::create([
-            'tag_id' => 1,
-            'course_id' => 3,
-        ]);
-        CourseTag::create([
-            'tag_id' => 3,
-            'course_id' => 3,
-        ]);
-        CourseTag::create([
-            'tag_id' => 5,
-            'course_id' => 3,
-        ]);
+        for ($j = 5; $j < 10; $j++) {
+            for ($i = 1; $i < 50; $i = $i + 5) {
+                CourseTag::create([
+                    'tag_id' => $j,
+                    'course_id' => $i + rand(0, 5),
+                ]);
+            }
+        }
+        
+        // CourseTag::create([
+        //     'tag_id' => 1,
+        //     'course_id' => 1,
+        // ]);
     }
 }

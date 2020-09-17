@@ -15,12 +15,6 @@
                 @if (Auth::check())
                 @csrf
                 <li class="nav-item">
-                    <a class="nav-link" href="#">list&nbsp;lesson</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">lesson&nbsp;detail</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.show') }}">profile</a>
                 </li>
                 <li class="nav-item logout">

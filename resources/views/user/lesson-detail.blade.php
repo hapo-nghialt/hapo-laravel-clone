@@ -51,7 +51,7 @@
                                         <img class="rounded-circle img-fluid" src="/images/teacher_1.png" alt="">
                                     </div>
                                     <div class="col-8 mt-4 d-flex flex-column justify-content-center">
-                                        <div class="teacher-name">{{ $teacher->name }}</div>
+                                        <div class="teacher-name">Luu Trung Nghia</div>
                                         <div class="teacher-exp">Second Year Teacher</div>
                                         <div class="mt-2">
                                             <i class="logo-google fab fa-google-plus-g"></i>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="teacher-desc mt-3 mb-5 mr-3">
-                                {{ $teacher->introduce }}
+                                Main Mentor!
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
             <div class="other-courses-element mt-4">
                 <div class="title py-3">Other Courses</div>
                 <div class="other-courses-list p-3">
-                    @foreach ($lesson->course->getOtherCourses() as $key => $courses)
+                    @foreach ($lesson->course->other_course as $key => $courses)
                         <a href="{{ route('course.detail', $courses->id) }}">
                             <div class="other-courses-item">
                                 {{ ++$key }}. {{ $courses->name }}

@@ -23,7 +23,11 @@ class CourseController extends Controller
         $teachers = User::where('role', User::ROLE['teacher'])->get();
         $tags = Tag::get();
         $data = $request->all();
-        $keyword = $data['course_search'];
+        if (isset($data['course_search'])) {
+            $keyword = $data['course_search'];
+        } else {
+            $keyword = '';
+        }
         $courses = Course::query()->filter($data)->paginate(config('variable.pagination'));
         return view('user.all-courses', compact('courses', 'teachers', 'keyword', 'tags'));
     }
