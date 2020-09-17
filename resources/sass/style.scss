@@ -130,6 +130,12 @@ main {
   }
 
   .courses-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    height: 100px;
     @include UTM(normal, 18px, 25px, #505050, -0.05em);
   }
 
@@ -252,7 +258,8 @@ main {
   background: $main_color;
   box-shadow: inset 0px 1.5px 2px #6F8710;
   border-radius: 22px;
-  @include UTM(bold, 18px, 22px, $main_font_color, -0.05em)
+  @include UTM(bold, 18px, 22px, $main_font_color, -0.05em);
+  color: $main_font_color;
 }
 
 .lesson-list {
@@ -687,7 +694,7 @@ main {
 
 .filter-status {
   label {
-    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-width: 0.3px;
     background-color: #E5E6E7;
     color: $gray;
     border-radius: 2px; 
@@ -707,6 +714,8 @@ main {
 }
 
 .btn-course-tag {
+  background-color: #E4E4E4;
+  border-radius: 3px;
   @include UTM(bold, 25px, 31px, #5D8BD0, -0.02em);
 }
 

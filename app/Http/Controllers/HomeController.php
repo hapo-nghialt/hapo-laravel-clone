@@ -14,10 +14,10 @@ class HomeController extends Controller
     {
         $courses = Course::all();
         $lessons = Lesson::all();
-        $learners = User::all();
+        $learners = User::where('role', User::ROLE['user']);
         $mainCourses = Course::orderBy('id', 'asc')->take(3)->get();
         $otherCourses = Course::orderBy('id', 'desc')->take(3)->get();
-        $reviews = Review::orderBy('rate', 'desc')->take(10)->get();
+        $reviews = Review::take(10)->get();
         $rate = config('variable.rate');
         return view('user.index')
             ->with(compact('courses', 'lessons', 'learners', 'mainCourses', 'otherCourses', 'reviews', 'rate'));

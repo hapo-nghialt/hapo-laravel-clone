@@ -12,10 +12,8 @@ class LessonController extends Controller
 {
     public function show($id)
     {
-        $courseId = Course::find(Lesson::findOrFail($id)->course_id);
-        $teacher = User::find($courseId->teacher_id);
         $lesson = Lesson::findOrFail($id);
-        return view('user.lesson-detail', compact('lesson', 'teacher'));
+        return view('user.lesson-detail', compact('lesson'));
     }
 
     public function takeLesson($courseId, $lessonId)

@@ -12,6 +12,7 @@ class LessonsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Lesson::class, 50)->create();
+        $i = rand(100, 200);
+        factory(Lesson::class, $i)->create();
     }
 }

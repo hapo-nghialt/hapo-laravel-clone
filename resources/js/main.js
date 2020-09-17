@@ -2,18 +2,18 @@ $(document).ready(function() {
     var login = document.getElementById("modal-login");
     var register = document.getElementById("modal-register");
 
-    $('.login').click(function () {
+    $(".login").click(function() {
         login.classList.add("focus-on");
         register.classList.remove("focus-on");
     });
 
-    $('.register').click(function () {
+    $(".register").click(function() {
         login.classList.remove("focus-on");
         register.classList.add("focus-on");
     });
 
-    $('.logout').click(function() {
-        $('.form-logout').submit();
+    $(".logout").click(function() {
+        $(".form-logout").submit();
     });
 
     if ($("#login input").hasClass("is-invalid")) {
@@ -22,19 +22,19 @@ $(document).ready(function() {
 
     if ($("#register input").hasClass("is-invalid")) {
         $("#myModal").modal("show");
-        $('.register').trigger("click");
+        $(".register").trigger("click");
     }
 
-    $('.btn-header').click(function() {
-        $('.btn-icon').toggleClass('fa-times');
-        $('.btn-icon').toggleClass('fa-bars');
+    $(".btn-header").click(function() {
+        $(".btn-icon").toggleClass("fa-times");
+        $(".btn-icon").toggleClass("fa-bars");
     });
 
-    $('.btn-chat').click(() => {
-        $('div.chat-content').fadeToggle();
+    $(".btn-chat").click(() => {
+        $("div.chat-content").fadeToggle();
     });
 
-    $('.comment').slick({
+    $(".comment").slick({
         infinite: true,
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -61,35 +61,43 @@ $(document).ready(function() {
 
     $("[data-toggle='tooltip']").tooltip();
 
-    $(".btn-learn, .btn-join-courses").click(function() {
+    $(".btn-learn").click(function() {
         $("#loginDefault, #registerDefault").val(
-            $(this).next()
+            $(this)
+                .next()
                 .val()
         );
     });
 
-    $('.btn-filter').click(function() {
-        $(".filter-course").fadeToggle();
+    $('#dataTables-example').DataTable();
+
+    $(".btn-join-courses").click(function() {
+        $("#loginDefault, #registerDefault").val(
+            $(this)
+                .next()
+                .val()
+        );
     });
 
-    $('.filter-newest').click(function() {
-        $('.filter-newest').addClass('acti');
+    $(".btn-filter").click(function() {
+        $(".filter-course").fadeToggle();
+        $(".filter-course").removeClass("d-none");
     });
-    
-    var fiveStar = document.getElementById("five-star").value;
-    var fourStar = document.getElementById("four-star").value;
-    var threeStar = document.getElementById("three-star").value;
-    var twoStar = document.getElementById("two-star").value;
-    var oneStar = document.getElementById("one-star").value;
-    $('#five-star-progress-bar').width(fiveStar);
-    $('#four-star-progress-bar').width(fourStar);
-    $('#three-star-progress-bar').width(threeStar);
-    $('#two-star-progress-bar').width(twoStar);
-    $('#one-star-progress-bar').width(oneStar);
+
+    let fiveStar = document.getElementById("five-star").value;
+    let fourStar = document.getElementById("four-star").value;
+    let threeStar = document.getElementById("three-star").value;
+    let twoStar = document.getElementById("two-star").value;
+    let oneStar = document.getElementById("one-star").value;
+    $("#five-star-progress-bar").width(fiveStar);
+    $("#four-star-progress-bar").width(fourStar);
+    $("#three-star-progress-bar").width(threeStar);
+    $("#two-star-progress-bar").width(twoStar);
+    $("#one-star-progress-bar").width(oneStar);
 
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
         }
     });
 
@@ -102,13 +110,13 @@ $(document).ready(function() {
         vote = $(this).attr("data-rate");
         $("#editstar" + vote).attr("checked", "true");
         var url = $(this).attr("data-url");
-        $("#edit-review-modal").on("click", ".btn-edit-review", function () {
+        $("#edit-review-modal").on("click", ".btn-edit-review", function() {
             $.ajax({
                 type: "POST",
                 url: url,
                 data: {
-                    "content": $("#content-edit-review-modal").val(),
-                    "rate": $(".rating-value").val()
+                    content: $("#content-edit-review-modal").val(),
+                    rate: $(".rating-value").val()
                 },
                 success: function success(response) {
                     location.reload();
@@ -119,7 +127,7 @@ $(document).ready(function() {
 
     $(document).on("click", ".icon-delete-review", function() {
         let url = $(this).attr("data-url");
-        $.ajax ({
+        $.ajax({
             type: "DELETE",
             url: url,
             success: function(response) {

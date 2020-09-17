@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->courses()->wherePivot('lesson_id', null)->get();
     }
+
+    public function getIsTeacherAttribute()
+    {
+        return $this->role == self::ROLE['teacher'];
+    }
 }

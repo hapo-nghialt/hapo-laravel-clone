@@ -16,7 +16,7 @@
                 <div class="tab-pane fade in show active p-3" id="login" role="tabpanel">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <input type="text" name="id" hidden id="loginDefault" value="{{ old('id') }}">
+                        <input type="text" hidden name="id" id="loginDefault" value="{{ old('id') }}">
                         <div class="modal-body mb-1 tab-pane">
                             <div class="md-form mb-4">
                                 <label class="form-label" for="email-login">Username:</label>

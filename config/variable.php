@@ -15,5 +15,5 @@ return [
         'one_star' => '1',
         'half_star' => '0.5',
     ],
-    'storage' => 'public/users/'
+    'storage' => 'public/users/',
 ];
